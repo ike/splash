@@ -1,5 +1,7 @@
 #! /bin/bash
 
+SPLASH_HTML_FILE_PATH="${1:-./index.html}"
+
 curl -X 'GET' \
   'https://api.windy.com/webcams/api/v3/webcams/1756933961?lang=en&include=images,urls' \
   -H 'accept: application/json' \
@@ -54,4 +56,4 @@ echo "$data" | jq '{
   )
 }' > weather.json
 
-./generate_html.sh weather.json index.html
+./generate_html.sh weather.json $SPLASH_HTML_FILE_PATH
