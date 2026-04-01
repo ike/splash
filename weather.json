@@ -1,0 +1,2725 @@
+{
+  "today": {
+    "wind": {
+      "average_ms": 2.2,
+      "average_mph": 5,
+      "peak_ms": 6.0,
+      "peak_mph": 13
+    },
+    "temperature": {
+      "feels_like_avg_c": 6.05,
+      "feels_like_avg_f": 43,
+      "low_c": 5.86,
+      "low_f": 43,
+      "high_c": 12.71,
+      "high_f": 55
+    },
+    "wind_direction_degrees": 225
+  },
+  "hourly": [
+    {
+      "time": "2026-04-01 00:00",
+      "wind": {
+        "speed_ms": 1.25,
+        "speed_mph": 3,
+        "direction_degrees": 158
+      },
+      "temperature": {
+        "actual_c": 8.78,
+        "actual_f": 48,
+        "feels_like_c": 6.24,
+        "feels_like_f": 43
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 65
+    },
+    {
+      "time": "2026-04-01 01:00",
+      "wind": {
+        "speed_ms": 1.21,
+        "speed_mph": 3,
+        "direction_degrees": 138
+      },
+      "temperature": {
+        "actual_c": 7.72,
+        "actual_f": 46,
+        "feels_like_c": 5.11,
+        "feels_like_f": 41
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 67
+    },
+    {
+      "time": "2026-04-01 02:00",
+      "wind": {
+        "speed_ms": 1.13,
+        "speed_mph": 3,
+        "direction_degrees": 124
+      },
+      "temperature": {
+        "actual_c": 6.79,
+        "actual_f": 44,
+        "feels_like_c": 4.16,
+        "feels_like_f": 39
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 70
+    },
+    {
+      "time": "2026-04-01 03:00",
+      "wind": {
+        "speed_ms": 1.08,
+        "speed_mph": 2,
+        "direction_degrees": 114
+      },
+      "temperature": {
+        "actual_c": 5.98,
+        "actual_f": 43,
+        "feels_like_c": 3.49,
+        "feels_like_f": 38
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 77
+    },
+    {
+      "time": "2026-04-01 04:00",
+      "wind": {
+        "speed_ms": 1.1,
+        "speed_mph": 2,
+        "direction_degrees": 109
+      },
+      "temperature": {
+        "actual_c": 5.86,
+        "actual_f": 43,
+        "feels_like_c": 3.53,
+        "feels_like_f": 38
+      },
+      "precipitation_mm": 0.38,
+      "relative_humidity": 83
+    },
+    {
+      "time": "2026-04-01 05:00",
+      "wind": {
+        "speed_ms": 1.05,
+        "speed_mph": 2,
+        "direction_degrees": 101
+      },
+      "temperature": {
+        "actual_c": 6.19,
+        "actual_f": 43,
+        "feels_like_c": 4.12,
+        "feels_like_f": 39
+      },
+      "precipitation_mm": 1.3,
+      "relative_humidity": 88
+    },
+    {
+      "time": "2026-04-01 06:00",
+      "wind": {
+        "speed_ms": 1.16,
+        "speed_mph": 3,
+        "direction_degrees": 23
+      },
+      "temperature": {
+        "actual_c": 6.44,
+        "actual_f": 44,
+        "feels_like_c": 4.5,
+        "feels_like_f": 40
+      },
+      "precipitation_mm": 1.26,
+      "relative_humidity": 93
+    },
+    {
+      "time": "2026-04-01 07:00",
+      "wind": {
+        "speed_ms": 1.21,
+        "speed_mph": 3,
+        "direction_degrees": 322
+      },
+      "temperature": {
+        "actual_c": 6.48,
+        "actual_f": 44,
+        "feels_like_c": 4.65,
+        "feels_like_f": 40
+      },
+      "precipitation_mm": 0.91,
+      "relative_humidity": 96
+    },
+    {
+      "time": "2026-04-01 08:00",
+      "wind": {
+        "speed_ms": 1.07,
+        "speed_mph": 2,
+        "direction_degrees": 314
+      },
+      "temperature": {
+        "actual_c": 6.69,
+        "actual_f": 44,
+        "feels_like_c": 5.04,
+        "feels_like_f": 41
+      },
+      "precipitation_mm": 1.27,
+      "relative_humidity": 98
+    },
+    {
+      "time": "2026-04-01 09:00",
+      "wind": {
+        "speed_ms": 1.29,
+        "speed_mph": 3,
+        "direction_degrees": 329
+      },
+      "temperature": {
+        "actual_c": 7.06,
+        "actual_f": 45,
+        "feels_like_c": 5.33,
+        "feels_like_f": 42
+      },
+      "precipitation_mm": 1.23,
+      "relative_humidity": 98
+    },
+    {
+      "time": "2026-04-01 10:00",
+      "wind": {
+        "speed_ms": 1.61,
+        "speed_mph": 4,
+        "direction_degrees": 127
+      },
+      "temperature": {
+        "actual_c": 7.78,
+        "actual_f": 46,
+        "feels_like_c": 5.94,
+        "feels_like_f": 43
+      },
+      "precipitation_mm": 0.68,
+      "relative_humidity": 96
+    },
+    {
+      "time": "2026-04-01 11:00",
+      "wind": {
+        "speed_ms": 1.98,
+        "speed_mph": 4,
+        "direction_degrees": 130
+      },
+      "temperature": {
+        "actual_c": 8.79,
+        "actual_f": 48,
+        "feels_like_c": 6.84,
+        "feels_like_f": 44
+      },
+      "precipitation_mm": 0.24,
+      "relative_humidity": 93
+    },
+    {
+      "time": "2026-04-01 12:00",
+      "wind": {
+        "speed_ms": 2.36,
+        "speed_mph": 5,
+        "direction_degrees": 122
+      },
+      "temperature": {
+        "actual_c": 9.92,
+        "actual_f": 50,
+        "feels_like_c": 7.86,
+        "feels_like_f": 46
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 90
+    },
+    {
+      "time": "2026-04-01 13:00",
+      "wind": {
+        "speed_ms": 2.65,
+        "speed_mph": 6,
+        "direction_degrees": 116
+      },
+      "temperature": {
+        "actual_c": 11.08,
+        "actual_f": 52,
+        "feels_like_c": 8.95,
+        "feels_like_f": 48
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 86
+    },
+    {
+      "time": "2026-04-01 14:00",
+      "wind": {
+        "speed_ms": 2.8,
+        "speed_mph": 6,
+        "direction_degrees": 109
+      },
+      "temperature": {
+        "actual_c": 12.21,
+        "actual_f": 54,
+        "feels_like_c": 9.96,
+        "feels_like_f": 50
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 80
+    },
+    {
+      "time": "2026-04-01 15:00",
+      "wind": {
+        "speed_ms": 2.55,
+        "speed_mph": 6,
+        "direction_degrees": 110
+      },
+      "temperature": {
+        "actual_c": 12.71,
+        "actual_f": 55,
+        "feels_like_c": 10.72,
+        "feels_like_f": 51
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 79
+    },
+    {
+      "time": "2026-04-01 16:00",
+      "wind": {
+        "speed_ms": 2.17,
+        "speed_mph": 5,
+        "direction_degrees": 111
+      },
+      "temperature": {
+        "actual_c": 12.54,
+        "actual_f": 55,
+        "feels_like_c": 10.94,
+        "feels_like_f": 52
+      },
+      "precipitation_mm": 0.36,
+      "relative_humidity": 82
+    },
+    {
+      "time": "2026-04-01 17:00",
+      "wind": {
+        "speed_ms": 1.93,
+        "speed_mph": 4,
+        "direction_degrees": 121
+      },
+      "temperature": {
+        "actual_c": 11.83,
+        "actual_f": 53,
+        "feels_like_c": 10.42,
+        "feels_like_f": 51
+      },
+      "precipitation_mm": 0.51,
+      "relative_humidity": 87
+    },
+    {
+      "time": "2026-04-01 18:00",
+      "wind": {
+        "speed_ms": 1.55,
+        "speed_mph": 3,
+        "direction_degrees": 150
+      },
+      "temperature": {
+        "actual_c": 10.71,
+        "actual_f": 51,
+        "feels_like_c": 9.72,
+        "feels_like_f": 49
+      },
+      "precipitation_mm": 0.51,
+      "relative_humidity": 96
+    },
+    {
+      "time": "2026-04-01 19:00",
+      "wind": {
+        "speed_ms": 1.77,
+        "speed_mph": 4,
+        "direction_degrees": 204
+      },
+      "temperature": {
+        "actual_c": 9.53,
+        "actual_f": 49,
+        "feels_like_c": 8.17,
+        "feels_like_f": 47
+      },
+      "precipitation_mm": 0.43,
+      "relative_humidity": 100
+    },
+    {
+      "time": "2026-04-01 20:00",
+      "wind": {
+        "speed_ms": 2.14,
+        "speed_mph": 5,
+        "direction_degrees": 222
+      },
+      "temperature": {
+        "actual_c": 8.37,
+        "actual_f": 47,
+        "feels_like_c": 6.45,
+        "feels_like_f": 44
+      },
+      "precipitation_mm": 0.33,
+      "relative_humidity": 100
+    },
+    {
+      "time": "2026-04-01 21:00",
+      "wind": {
+        "speed_ms": 3.05,
+        "speed_mph": 7,
+        "direction_degrees": 224
+      },
+      "temperature": {
+        "actual_c": 7.6,
+        "actual_f": 46,
+        "feels_like_c": 4.84,
+        "feels_like_f": 41
+      },
+      "precipitation_mm": 0.22,
+      "relative_humidity": 100
+    },
+    {
+      "time": "2026-04-01 22:00",
+      "wind": {
+        "speed_ms": 4.45,
+        "speed_mph": 10,
+        "direction_degrees": 226
+      },
+      "temperature": {
+        "actual_c": 6.98,
+        "actual_f": 45,
+        "feels_like_c": 3.01,
+        "feels_like_f": 37
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 97
+    },
+    {
+      "time": "2026-04-01 23:00",
+      "wind": {
+        "speed_ms": 5.6,
+        "speed_mph": 13,
+        "direction_degrees": 227
+      },
+      "temperature": {
+        "actual_c": 6.47,
+        "actual_f": 44,
+        "feels_like_c": 1.27,
+        "feels_like_f": 34
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 88
+    },
+    {
+      "time": "2026-04-02 00:00",
+      "wind": {
+        "speed_ms": 6.0,
+        "speed_mph": 13,
+        "direction_degrees": 226
+      },
+      "temperature": {
+        "actual_c": 6.03,
+        "actual_f": 43,
+        "feels_like_c": 0.26,
+        "feels_like_f": 32
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 82
+    },
+    {
+      "time": "2026-04-02 01:00",
+      "wind": {
+        "speed_ms": 5.98,
+        "speed_mph": 13,
+        "direction_degrees": 223
+      },
+      "temperature": {
+        "actual_c": 5.76,
+        "actual_f": 42,
+        "feels_like_c": -0.23,
+        "feels_like_f": 32
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 76
+    },
+    {
+      "time": "2026-04-02 02:00",
+      "wind": {
+        "speed_ms": 5.91,
+        "speed_mph": 13,
+        "direction_degrees": 222
+      },
+      "temperature": {
+        "actual_c": 5.68,
+        "actual_f": 42,
+        "feels_like_c": -0.37,
+        "feels_like_f": 31
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 73
+    },
+    {
+      "time": "2026-04-02 03:00",
+      "wind": {
+        "speed_ms": 5.63,
+        "speed_mph": 13,
+        "direction_degrees": 222
+      },
+      "temperature": {
+        "actual_c": 5.71,
+        "actual_f": 42,
+        "feels_like_c": -0.21,
+        "feels_like_f": 32
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 71
+    },
+    {
+      "time": "2026-04-02 04:00",
+      "wind": {
+        "speed_ms": 5.26,
+        "speed_mph": 12,
+        "direction_degrees": 224
+      },
+      "temperature": {
+        "actual_c": 5.51,
+        "actual_f": 42,
+        "feels_like_c": -0.09,
+        "feels_like_f": 32
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 74
+    },
+    {
+      "time": "2026-04-02 05:00",
+      "wind": {
+        "speed_ms": 5.0,
+        "speed_mph": 11,
+        "direction_degrees": 226
+      },
+      "temperature": {
+        "actual_c": 5.6,
+        "actual_f": 42,
+        "feels_like_c": 0.15,
+        "feels_like_f": 32
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 72
+    },
+    {
+      "time": "2026-04-02 06:00",
+      "wind": {
+        "speed_ms": 4.98,
+        "speed_mph": 11,
+        "direction_degrees": 227
+      },
+      "temperature": {
+        "actual_c": 6.08,
+        "actual_f": 43,
+        "feels_like_c": 0.64,
+        "feels_like_f": 33
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 70
+    },
+    {
+      "time": "2026-04-02 07:00",
+      "wind": {
+        "speed_ms": 5.03,
+        "speed_mph": 11,
+        "direction_degrees": 226
+      },
+      "temperature": {
+        "actual_c": 7.11,
+        "actual_f": 45,
+        "feels_like_c": 1.7,
+        "feels_like_f": 35
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 67
+    },
+    {
+      "time": "2026-04-02 08:00",
+      "wind": {
+        "speed_ms": 5.15,
+        "speed_mph": 12,
+        "direction_degrees": 227
+      },
+      "temperature": {
+        "actual_c": 8.22,
+        "actual_f": 47,
+        "feels_like_c": 2.77,
+        "feels_like_f": 37
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 63
+    },
+    {
+      "time": "2026-04-02 09:00",
+      "wind": {
+        "speed_ms": 5.38,
+        "speed_mph": 12,
+        "direction_degrees": 233
+      },
+      "temperature": {
+        "actual_c": 9.26,
+        "actual_f": 49,
+        "feels_like_c": 3.68,
+        "feels_like_f": 39
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 59
+    },
+    {
+      "time": "2026-04-02 10:00",
+      "wind": {
+        "speed_ms": 5.51,
+        "speed_mph": 12,
+        "direction_degrees": 241
+      },
+      "temperature": {
+        "actual_c": 10.17,
+        "actual_f": 50,
+        "feels_like_c": 4.48,
+        "feels_like_f": 40
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 56
+    },
+    {
+      "time": "2026-04-02 11:00",
+      "wind": {
+        "speed_ms": 5.6,
+        "speed_mph": 13,
+        "direction_degrees": 247
+      },
+      "temperature": {
+        "actual_c": 11.11,
+        "actual_f": 52,
+        "feels_like_c": 5.34,
+        "feels_like_f": 42
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 52
+    },
+    {
+      "time": "2026-04-02 12:00",
+      "wind": {
+        "speed_ms": 5.41,
+        "speed_mph": 12,
+        "direction_degrees": 260
+      },
+      "temperature": {
+        "actual_c": 11.9,
+        "actual_f": 53,
+        "feels_like_c": 6.22,
+        "feels_like_f": 43
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 48
+    },
+    {
+      "time": "2026-04-02 13:00",
+      "wind": {
+        "speed_ms": 5.18,
+        "speed_mph": 12,
+        "direction_degrees": 266
+      },
+      "temperature": {
+        "actual_c": 12.48,
+        "actual_f": 54,
+        "feels_like_c": 6.9,
+        "feels_like_f": 44
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 45
+    },
+    {
+      "time": "2026-04-02 14:00",
+      "wind": {
+        "speed_ms": 5.0,
+        "speed_mph": 11,
+        "direction_degrees": 270
+      },
+      "temperature": {
+        "actual_c": 12.88,
+        "actual_f": 55,
+        "feels_like_c": 7.38,
+        "feels_like_f": 45
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 43
+    },
+    {
+      "time": "2026-04-02 15:00",
+      "wind": {
+        "speed_ms": 4.96,
+        "speed_mph": 11,
+        "direction_degrees": 274
+      },
+      "temperature": {
+        "actual_c": 13.14,
+        "actual_f": 56,
+        "feels_like_c": 7.65,
+        "feels_like_f": 46
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 42
+    },
+    {
+      "time": "2026-04-02 16:00",
+      "wind": {
+        "speed_ms": 4.99,
+        "speed_mph": 11,
+        "direction_degrees": 272
+      },
+      "temperature": {
+        "actual_c": 13.24,
+        "actual_f": 56,
+        "feels_like_c": 7.71,
+        "feels_like_f": 46
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 41
+    },
+    {
+      "time": "2026-04-02 17:00",
+      "wind": {
+        "speed_ms": 5.03,
+        "speed_mph": 11,
+        "direction_degrees": 269
+      },
+      "temperature": {
+        "actual_c": 12.95,
+        "actual_f": 55,
+        "feels_like_c": 7.36,
+        "feels_like_f": 45
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 41
+    },
+    {
+      "time": "2026-04-02 18:00",
+      "wind": {
+        "speed_ms": 4.77,
+        "speed_mph": 11,
+        "direction_degrees": 270
+      },
+      "temperature": {
+        "actual_c": 12.03,
+        "actual_f": 54,
+        "feels_like_c": 6.69,
+        "feels_like_f": 44
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 45
+    },
+    {
+      "time": "2026-04-02 19:00",
+      "wind": {
+        "speed_ms": 4.37,
+        "speed_mph": 10,
+        "direction_degrees": 266
+      },
+      "temperature": {
+        "actual_c": 10.54,
+        "actual_f": 51,
+        "feels_like_c": 5.54,
+        "feels_like_f": 42
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 52
+    },
+    {
+      "time": "2026-04-02 20:00",
+      "wind": {
+        "speed_ms": 4.05,
+        "speed_mph": 9,
+        "direction_degrees": 258
+      },
+      "temperature": {
+        "actual_c": 8.85,
+        "actual_f": 48,
+        "feels_like_c": 4.11,
+        "feels_like_f": 39
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 59
+    },
+    {
+      "time": "2026-04-02 21:00",
+      "wind": {
+        "speed_ms": 3.89,
+        "speed_mph": 9,
+        "direction_degrees": 252
+      },
+      "temperature": {
+        "actual_c": 7.35,
+        "actual_f": 45,
+        "feels_like_c": 2.71,
+        "feels_like_f": 37
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 65
+    },
+    {
+      "time": "2026-04-02 22:00",
+      "wind": {
+        "speed_ms": 3.63,
+        "speed_mph": 8,
+        "direction_degrees": 242
+      },
+      "temperature": {
+        "actual_c": 6.03,
+        "actual_f": 43,
+        "feels_like_c": 1.55,
+        "feels_like_f": 35
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 70
+    },
+    {
+      "time": "2026-04-02 23:00",
+      "wind": {
+        "speed_ms": 3.51,
+        "speed_mph": 8,
+        "direction_degrees": 231
+      },
+      "temperature": {
+        "actual_c": 4.93,
+        "actual_f": 41,
+        "feels_like_c": 0.47,
+        "feels_like_f": 33
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 74
+    },
+    {
+      "time": "2026-04-03 00:00",
+      "wind": {
+        "speed_ms": 3.4,
+        "speed_mph": 8,
+        "direction_degrees": 222
+      },
+      "temperature": {
+        "actual_c": 4.04,
+        "actual_f": 39,
+        "feels_like_c": -0.37,
+        "feels_like_f": 31
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 78
+    },
+    {
+      "time": "2026-04-03 01:00",
+      "wind": {
+        "speed_ms": 3.3,
+        "speed_mph": 7,
+        "direction_degrees": 215
+      },
+      "temperature": {
+        "actual_c": 3.45,
+        "actual_f": 38,
+        "feels_like_c": -0.93,
+        "feels_like_f": 30
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 80
+    },
+    {
+      "time": "2026-04-03 02:00",
+      "wind": {
+        "speed_ms": 3.24,
+        "speed_mph": 7,
+        "direction_degrees": 209
+      },
+      "temperature": {
+        "actual_c": 3.06,
+        "actual_f": 38,
+        "feels_like_c": -1.24,
+        "feels_like_f": 30
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 83
+    },
+    {
+      "time": "2026-04-03 03:00",
+      "wind": {
+        "speed_ms": 3.18,
+        "speed_mph": 7,
+        "direction_degrees": 205
+      },
+      "temperature": {
+        "actual_c": 2.8,
+        "actual_f": 37,
+        "feels_like_c": -1.43,
+        "feels_like_f": 29
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 86
+    },
+    {
+      "time": "2026-04-03 04:00",
+      "wind": {
+        "speed_ms": 3.03,
+        "speed_mph": 7,
+        "direction_degrees": 205
+      },
+      "temperature": {
+        "actual_c": 2.57,
+        "actual_f": 37,
+        "feels_like_c": -1.5,
+        "feels_like_f": 29
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 90
+    },
+    {
+      "time": "2026-04-03 05:00",
+      "wind": {
+        "speed_ms": 2.92,
+        "speed_mph": 7,
+        "direction_degrees": 203
+      },
+      "temperature": {
+        "actual_c": 2.48,
+        "actual_f": 36,
+        "feels_like_c": -1.49,
+        "feels_like_f": 29
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 91
+    },
+    {
+      "time": "2026-04-03 06:00",
+      "wind": {
+        "speed_ms": 2.86,
+        "speed_mph": 6,
+        "direction_degrees": 202
+      },
+      "temperature": {
+        "actual_c": 2.94,
+        "actual_f": 37,
+        "feels_like_c": -0.99,
+        "feels_like_f": 30
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 88
+    },
+    {
+      "time": "2026-04-03 07:00",
+      "wind": {
+        "speed_ms": 2.77,
+        "speed_mph": 6,
+        "direction_degrees": 202
+      },
+      "temperature": {
+        "actual_c": 4.33,
+        "actual_f": 40,
+        "feels_like_c": 0.52,
+        "feels_like_f": 33
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 82
+    },
+    {
+      "time": "2026-04-03 08:00",
+      "wind": {
+        "speed_ms": 2.74,
+        "speed_mph": 6,
+        "direction_degrees": 201
+      },
+      "temperature": {
+        "actual_c": 6.35,
+        "actual_f": 43,
+        "feels_like_c": 2.58,
+        "feels_like_f": 37
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 71
+    },
+    {
+      "time": "2026-04-03 09:00",
+      "wind": {
+        "speed_ms": 2.88,
+        "speed_mph": 6,
+        "direction_degrees": 204
+      },
+      "temperature": {
+        "actual_c": 8.57,
+        "actual_f": 47,
+        "feels_like_c": 4.74,
+        "feels_like_f": 41
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 62
+    },
+    {
+      "time": "2026-04-03 10:00",
+      "wind": {
+        "speed_ms": 3.02,
+        "speed_mph": 7,
+        "direction_degrees": 209
+      },
+      "temperature": {
+        "actual_c": 10.5,
+        "actual_f": 51,
+        "feels_like_c": 6.52,
+        "feels_like_f": 44
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 54
+    },
+    {
+      "time": "2026-04-03 11:00",
+      "wind": {
+        "speed_ms": 2.99,
+        "speed_mph": 7,
+        "direction_degrees": 211
+      },
+      "temperature": {
+        "actual_c": 12.24,
+        "actual_f": 54,
+        "feels_like_c": 8.57,
+        "feels_like_f": 47
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 47
+    },
+    {
+      "time": "2026-04-03 12:00",
+      "wind": {
+        "speed_ms": 2.84,
+        "speed_mph": 6,
+        "direction_degrees": 208
+      },
+      "temperature": {
+        "actual_c": 13.65,
+        "actual_f": 57,
+        "feels_like_c": 10.65,
+        "feels_like_f": 51
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 42
+    },
+    {
+      "time": "2026-04-03 13:00",
+      "wind": {
+        "speed_ms": 2.59,
+        "speed_mph": 6,
+        "direction_degrees": 204
+      },
+      "temperature": {
+        "actual_c": 14.85,
+        "actual_f": 59,
+        "feels_like_c": 12.32,
+        "feels_like_f": 54
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 38
+    },
+    {
+      "time": "2026-04-03 14:00",
+      "wind": {
+        "speed_ms": 2.39,
+        "speed_mph": 5,
+        "direction_degrees": 200
+      },
+      "temperature": {
+        "actual_c": 15.85,
+        "actual_f": 61,
+        "feels_like_c": 13.44,
+        "feels_like_f": 56
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 35
+    },
+    {
+      "time": "2026-04-03 15:00",
+      "wind": {
+        "speed_ms": 2.24,
+        "speed_mph": 5,
+        "direction_degrees": 200
+      },
+      "temperature": {
+        "actual_c": 16.63,
+        "actual_f": 62,
+        "feels_like_c": 13.99,
+        "feels_like_f": 57
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 33
+    },
+    {
+      "time": "2026-04-03 16:00",
+      "wind": {
+        "speed_ms": 2.1,
+        "speed_mph": 5,
+        "direction_degrees": 197
+      },
+      "temperature": {
+        "actual_c": 17.02,
+        "actual_f": 63,
+        "feels_like_c": 13.82,
+        "feels_like_f": 57
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 31
+    },
+    {
+      "time": "2026-04-03 17:00",
+      "wind": {
+        "speed_ms": 1.95,
+        "speed_mph": 4,
+        "direction_degrees": 191
+      },
+      "temperature": {
+        "actual_c": 16.65,
+        "actual_f": 62,
+        "feels_like_c": 13.06,
+        "feels_like_f": 56
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 30
+    },
+    {
+      "time": "2026-04-03 18:00",
+      "wind": {
+        "speed_ms": 1.65,
+        "speed_mph": 4,
+        "direction_degrees": 177
+      },
+      "temperature": {
+        "actual_c": 15.4,
+        "actual_f": 60,
+        "feels_like_c": 12.08,
+        "feels_like_f": 54
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 34
+    },
+    {
+      "time": "2026-04-03 19:00",
+      "wind": {
+        "speed_ms": 1.37,
+        "speed_mph": 3,
+        "direction_degrees": 151
+      },
+      "temperature": {
+        "actual_c": 13.57,
+        "actual_f": 56,
+        "feels_like_c": 10.53,
+        "feels_like_f": 51
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 40
+    },
+    {
+      "time": "2026-04-03 20:00",
+      "wind": {
+        "speed_ms": 1.23,
+        "speed_mph": 3,
+        "direction_degrees": 136
+      },
+      "temperature": {
+        "actual_c": 11.64,
+        "actual_f": 53,
+        "feels_like_c": 8.74,
+        "feels_like_f": 48
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 46
+    },
+    {
+      "time": "2026-04-03 21:00",
+      "wind": {
+        "speed_ms": 1.27,
+        "speed_mph": 3,
+        "direction_degrees": 136
+      },
+      "temperature": {
+        "actual_c": 9.99,
+        "actual_f": 50,
+        "feels_like_c": 7.1,
+        "feels_like_f": 45
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 52
+    },
+    {
+      "time": "2026-04-03 22:00",
+      "wind": {
+        "speed_ms": 1.3,
+        "speed_mph": 3,
+        "direction_degrees": 139
+      },
+      "temperature": {
+        "actual_c": 8.47,
+        "actual_f": 47,
+        "feels_like_c": 5.6,
+        "feels_like_f": 42
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 59
+    },
+    {
+      "time": "2026-04-03 23:00",
+      "wind": {
+        "speed_ms": 1.27,
+        "speed_mph": 3,
+        "direction_degrees": 139
+      },
+      "temperature": {
+        "actual_c": 7.18,
+        "actual_f": 45,
+        "feels_like_c": 4.34,
+        "feels_like_f": 40
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 65
+    },
+    {
+      "time": "2026-04-04 00:00",
+      "wind": {
+        "speed_ms": 1.18,
+        "speed_mph": 3,
+        "direction_degrees": 125
+      },
+      "temperature": {
+        "actual_c": 6.15,
+        "actual_f": 43,
+        "feels_like_c": 3.37,
+        "feels_like_f": 38
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 69
+    },
+    {
+      "time": "2026-04-04 01:00",
+      "wind": {
+        "speed_ms": 1.04,
+        "speed_mph": 2,
+        "direction_degrees": 91
+      },
+      "temperature": {
+        "actual_c": 5.44,
+        "actual_f": 42,
+        "feels_like_c": 2.71,
+        "feels_like_f": 37
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 72
+    },
+    {
+      "time": "2026-04-04 02:00",
+      "wind": {
+        "speed_ms": 0.94,
+        "speed_mph": 2,
+        "direction_degrees": 59
+      },
+      "temperature": {
+        "actual_c": 4.98,
+        "actual_f": 41,
+        "feels_like_c": 2.34,
+        "feels_like_f": 36
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 74
+    },
+    {
+      "time": "2026-04-04 03:00",
+      "wind": {
+        "speed_ms": 0.89,
+        "speed_mph": 2,
+        "direction_degrees": 37
+      },
+      "temperature": {
+        "actual_c": 4.58,
+        "actual_f": 40,
+        "feels_like_c": 1.99,
+        "feels_like_f": 36
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 77
+    },
+    {
+      "time": "2026-04-04 04:00",
+      "wind": {
+        "speed_ms": 0.86,
+        "speed_mph": 2,
+        "direction_degrees": 17
+      },
+      "temperature": {
+        "actual_c": 4.11,
+        "actual_f": 39,
+        "feels_like_c": 1.59,
+        "feels_like_f": 35
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 81
+    },
+    {
+      "time": "2026-04-04 05:00",
+      "wind": {
+        "speed_ms": 0.89,
+        "speed_mph": 2,
+        "direction_degrees": 2
+      },
+      "temperature": {
+        "actual_c": 3.68,
+        "actual_f": 39,
+        "feels_like_c": 1.16,
+        "feels_like_f": 34
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 85
+    },
+    {
+      "time": "2026-04-04 06:00",
+      "wind": {
+        "speed_ms": 0.92,
+        "speed_mph": 2,
+        "direction_degrees": 346
+      },
+      "temperature": {
+        "actual_c": 3.88,
+        "actual_f": 39,
+        "feels_like_c": 1.34,
+        "feels_like_f": 34
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 83
+    },
+    {
+      "time": "2026-04-04 07:00",
+      "wind": {
+        "speed_ms": 0.91,
+        "speed_mph": 2,
+        "direction_degrees": 336
+      },
+      "temperature": {
+        "actual_c": 5.22,
+        "actual_f": 41,
+        "feels_like_c": 2.74,
+        "feels_like_f": 37
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 78
+    },
+    {
+      "time": "2026-04-04 08:00",
+      "wind": {
+        "speed_ms": 0.86,
+        "speed_mph": 2,
+        "direction_degrees": 333
+      },
+      "temperature": {
+        "actual_c": 7.4,
+        "actual_f": 45,
+        "feels_like_c": 4.99,
+        "feels_like_f": 41
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 68
+    },
+    {
+      "time": "2026-04-04 09:00",
+      "wind": {
+        "speed_ms": 0.91,
+        "speed_mph": 2,
+        "direction_degrees": 342
+      },
+      "temperature": {
+        "actual_c": 9.84,
+        "actual_f": 50,
+        "feels_like_c": 7.45,
+        "feels_like_f": 45
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 59
+    },
+    {
+      "time": "2026-04-04 10:00",
+      "wind": {
+        "speed_ms": 1.13,
+        "speed_mph": 3,
+        "direction_degrees": 352
+      },
+      "temperature": {
+        "actual_c": 12.11,
+        "actual_f": 54,
+        "feels_like_c": 9.6,
+        "feels_like_f": 49
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 51
+    },
+    {
+      "time": "2026-04-04 11:00",
+      "wind": {
+        "speed_ms": 1.32,
+        "speed_mph": 3,
+        "direction_degrees": 359
+      },
+      "temperature": {
+        "actual_c": 14.23,
+        "actual_f": 58,
+        "feels_like_c": 12.08,
+        "feels_like_f": 54
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 45
+    },
+    {
+      "time": "2026-04-04 12:00",
+      "wind": {
+        "speed_ms": 1.35,
+        "speed_mph": 3,
+        "direction_degrees": 6
+      },
+      "temperature": {
+        "actual_c": 16.18,
+        "actual_f": 61,
+        "feels_like_c": 14.52,
+        "feels_like_f": 58
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 39
+    },
+    {
+      "time": "2026-04-04 13:00",
+      "wind": {
+        "speed_ms": 1.31,
+        "speed_mph": 3,
+        "direction_degrees": 15
+      },
+      "temperature": {
+        "actual_c": 17.83,
+        "actual_f": 64,
+        "feels_like_c": 16.57,
+        "feels_like_f": 62
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 35
+    },
+    {
+      "time": "2026-04-04 14:00",
+      "wind": {
+        "speed_ms": 1.29,
+        "speed_mph": 3,
+        "direction_degrees": 24
+      },
+      "temperature": {
+        "actual_c": 19.18,
+        "actual_f": 67,
+        "feels_like_c": 17.93,
+        "feels_like_f": 64
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 31
+    },
+    {
+      "time": "2026-04-04 15:00",
+      "wind": {
+        "speed_ms": 1.3,
+        "speed_mph": 3,
+        "direction_degrees": 32
+      },
+      "temperature": {
+        "actual_c": 20.14,
+        "actual_f": 68,
+        "feels_like_c": 18.33,
+        "feels_like_f": 65
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 29
+    },
+    {
+      "time": "2026-04-04 16:00",
+      "wind": {
+        "speed_ms": 1.31,
+        "speed_mph": 3,
+        "direction_degrees": 38
+      },
+      "temperature": {
+        "actual_c": 20.51,
+        "actual_f": 69,
+        "feels_like_c": 17.85,
+        "feels_like_f": 64
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 27
+    },
+    {
+      "time": "2026-04-04 17:00",
+      "wind": {
+        "speed_ms": 1.31,
+        "speed_mph": 3,
+        "direction_degrees": 39
+      },
+      "temperature": {
+        "actual_c": 20.04,
+        "actual_f": 68,
+        "feels_like_c": 17.16,
+        "feels_like_f": 63
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 28
+    },
+    {
+      "time": "2026-04-04 18:00",
+      "wind": {
+        "speed_ms": 1.18,
+        "speed_mph": 3,
+        "direction_degrees": 27
+      },
+      "temperature": {
+        "actual_c": 18.55,
+        "actual_f": 65,
+        "feels_like_c": 15.83,
+        "feels_like_f": 60
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 31
+    },
+    {
+      "time": "2026-04-04 19:00",
+      "wind": {
+        "speed_ms": 1.04,
+        "speed_mph": 2,
+        "direction_degrees": 11
+      },
+      "temperature": {
+        "actual_c": 16.59,
+        "actual_f": 62,
+        "feels_like_c": 14.06,
+        "feels_like_f": 57
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 37
+    },
+    {
+      "time": "2026-04-04 20:00",
+      "wind": {
+        "speed_ms": 0.9,
+        "speed_mph": 2,
+        "direction_degrees": 358
+      },
+      "temperature": {
+        "actual_c": 14.55,
+        "actual_f": 58,
+        "feels_like_c": 12.17,
+        "feels_like_f": 54
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 43
+    },
+    {
+      "time": "2026-04-04 21:00",
+      "wind": {
+        "speed_ms": 0.91,
+        "speed_mph": 2,
+        "direction_degrees": 354
+      },
+      "temperature": {
+        "actual_c": 12.92,
+        "actual_f": 55,
+        "feels_like_c": 10.54,
+        "feels_like_f": 51
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 48
+    },
+    {
+      "time": "2026-04-04 22:00",
+      "wind": {
+        "speed_ms": 1.05,
+        "speed_mph": 2,
+        "direction_degrees": 356
+      },
+      "temperature": {
+        "actual_c": 11.43,
+        "actual_f": 53,
+        "feels_like_c": 8.95,
+        "feels_like_f": 48
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 53
+    },
+    {
+      "time": "2026-04-04 23:00",
+      "wind": {
+        "speed_ms": 1.17,
+        "speed_mph": 3,
+        "direction_degrees": 358
+      },
+      "temperature": {
+        "actual_c": 10.12,
+        "actual_f": 50,
+        "feels_like_c": 7.53,
+        "feels_like_f": 46
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 57
+    },
+    {
+      "time": "2026-04-05 00:00",
+      "wind": {
+        "speed_ms": 1.18,
+        "speed_mph": 3,
+        "direction_degrees": 357
+      },
+      "temperature": {
+        "actual_c": 8.95,
+        "actual_f": 48,
+        "feels_like_c": 6.35,
+        "feels_like_f": 43
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 62
+    },
+    {
+      "time": "2026-04-05 01:00",
+      "wind": {
+        "speed_ms": 1.13,
+        "speed_mph": 3,
+        "direction_degrees": 354
+      },
+      "temperature": {
+        "actual_c": 8.01,
+        "actual_f": 46,
+        "feels_like_c": 5.42,
+        "feels_like_f": 42
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 65
+    },
+    {
+      "time": "2026-04-05 02:00",
+      "wind": {
+        "speed_ms": 1.11,
+        "speed_mph": 2,
+        "direction_degrees": 352
+      },
+      "temperature": {
+        "actual_c": 7.26,
+        "actual_f": 45,
+        "feels_like_c": 4.72,
+        "feels_like_f": 40
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 69
+    },
+    {
+      "time": "2026-04-05 03:00",
+      "wind": {
+        "speed_ms": 1.14,
+        "speed_mph": 3,
+        "direction_degrees": 352
+      },
+      "temperature": {
+        "actual_c": 6.54,
+        "actual_f": 44,
+        "feels_like_c": 4.0,
+        "feels_like_f": 39
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 74
+    },
+    {
+      "time": "2026-04-05 04:00",
+      "wind": {
+        "speed_ms": 1.13,
+        "speed_mph": 3,
+        "direction_degrees": 352
+      },
+      "temperature": {
+        "actual_c": 5.97,
+        "actual_f": 43,
+        "feels_like_c": 3.47,
+        "feels_like_f": 38
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 78
+    },
+    {
+      "time": "2026-04-05 05:00",
+      "wind": {
+        "speed_ms": 1.16,
+        "speed_mph": 3,
+        "direction_degrees": 351
+      },
+      "temperature": {
+        "actual_c": 5.56,
+        "actual_f": 42,
+        "feels_like_c": 3.09,
+        "feels_like_f": 38
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 82
+    },
+    {
+      "time": "2026-04-05 06:00",
+      "wind": {
+        "speed_ms": 1.17,
+        "speed_mph": 3,
+        "direction_degrees": 346
+      },
+      "temperature": {
+        "actual_c": 5.85,
+        "actual_f": 43,
+        "feels_like_c": 3.4,
+        "feels_like_f": 38
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 81
+    },
+    {
+      "time": "2026-04-05 07:00",
+      "wind": {
+        "speed_ms": 1.14,
+        "speed_mph": 3,
+        "direction_degrees": 340
+      },
+      "temperature": {
+        "actual_c": 7.18,
+        "actual_f": 45,
+        "feels_like_c": 4.83,
+        "feels_like_f": 41
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 76
+    },
+    {
+      "time": "2026-04-05 08:00",
+      "wind": {
+        "speed_ms": 1.02,
+        "speed_mph": 2,
+        "direction_degrees": 337
+      },
+      "temperature": {
+        "actual_c": 9.38,
+        "actual_f": 49,
+        "feels_like_c": 7.18,
+        "feels_like_f": 45
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 67
+    },
+    {
+      "time": "2026-04-05 09:00",
+      "wind": {
+        "speed_ms": 1.09,
+        "speed_mph": 2,
+        "direction_degrees": 341
+      },
+      "temperature": {
+        "actual_c": 11.94,
+        "actual_f": 53,
+        "feels_like_c": 9.75,
+        "feels_like_f": 50
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 58
+    },
+    {
+      "time": "2026-04-05 10:00",
+      "wind": {
+        "speed_ms": 1.37,
+        "speed_mph": 3,
+        "direction_degrees": 346
+      },
+      "temperature": {
+        "actual_c": 14.35,
+        "actual_f": 58,
+        "feels_like_c": 11.97,
+        "feels_like_f": 54
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 49
+    },
+    {
+      "time": "2026-04-05 11:00",
+      "wind": {
+        "speed_ms": 1.65,
+        "speed_mph": 4,
+        "direction_degrees": 351
+      },
+      "temperature": {
+        "actual_c": 16.63,
+        "actual_f": 62,
+        "feels_like_c": 14.06,
+        "feels_like_f": 57
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 43
+    },
+    {
+      "time": "2026-04-05 12:00",
+      "wind": {
+        "speed_ms": 1.85,
+        "speed_mph": 4,
+        "direction_degrees": 357
+      },
+      "temperature": {
+        "actual_c": 18.69,
+        "actual_f": 66,
+        "feels_like_c": 16.3,
+        "feels_like_f": 61
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 37
+    },
+    {
+      "time": "2026-04-05 13:00",
+      "wind": {
+        "speed_ms": 1.97,
+        "speed_mph": 4,
+        "direction_degrees": 2
+      },
+      "temperature": {
+        "actual_c": 20.47,
+        "actual_f": 69,
+        "feels_like_c": 18.44,
+        "feels_like_f": 65
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 32
+    },
+    {
+      "time": "2026-04-05 14:00",
+      "wind": {
+        "speed_ms": 2.01,
+        "speed_mph": 4,
+        "direction_degrees": 7
+      },
+      "temperature": {
+        "actual_c": 21.92,
+        "actual_f": 71,
+        "feels_like_c": 20.02,
+        "feels_like_f": 68
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 29
+    },
+    {
+      "time": "2026-04-05 15:00",
+      "wind": {
+        "speed_ms": 1.94,
+        "speed_mph": 4,
+        "direction_degrees": 11
+      },
+      "temperature": {
+        "actual_c": 23.0,
+        "actual_f": 73,
+        "feels_like_c": 20.79,
+        "feels_like_f": 69
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 26
+    },
+    {
+      "time": "2026-04-05 16:00",
+      "wind": {
+        "speed_ms": 1.8,
+        "speed_mph": 4,
+        "direction_degrees": 16
+      },
+      "temperature": {
+        "actual_c": 23.49,
+        "actual_f": 74,
+        "feels_like_c": 20.73,
+        "feels_like_f": 69
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 25
+    },
+    {
+      "time": "2026-04-05 17:00",
+      "wind": {
+        "speed_ms": 1.7,
+        "speed_mph": 4,
+        "direction_degrees": 17
+      },
+      "temperature": {
+        "actual_c": 23.14,
+        "actual_f": 74,
+        "feels_like_c": 20.17,
+        "feels_like_f": 68
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 25
+    },
+    {
+      "time": "2026-04-05 18:00",
+      "wind": {
+        "speed_ms": 1.66,
+        "speed_mph": 4,
+        "direction_degrees": 10
+      },
+      "temperature": {
+        "actual_c": 21.78,
+        "actual_f": 71,
+        "feels_like_c": 18.91,
+        "feels_like_f": 66
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 28
+    },
+    {
+      "time": "2026-04-05 19:00",
+      "wind": {
+        "speed_ms": 1.56,
+        "speed_mph": 3,
+        "direction_degrees": 356
+      },
+      "temperature": {
+        "actual_c": 19.88,
+        "actual_f": 68,
+        "feels_like_c": 17.21,
+        "feels_like_f": 63
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 33
+    },
+    {
+      "time": "2026-04-05 20:00",
+      "wind": {
+        "speed_ms": 1.53,
+        "speed_mph": 3,
+        "direction_degrees": 343
+      },
+      "temperature": {
+        "actual_c": 17.9,
+        "actual_f": 64,
+        "feels_like_c": 15.28,
+        "feels_like_f": 60
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 37
+    },
+    {
+      "time": "2026-04-05 21:00",
+      "wind": {
+        "speed_ms": 1.52,
+        "speed_mph": 3,
+        "direction_degrees": 333
+      },
+      "temperature": {
+        "actual_c": 16.33,
+        "actual_f": 61,
+        "feels_like_c": 13.72,
+        "feels_like_f": 57
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 41
+    },
+    {
+      "time": "2026-04-05 22:00",
+      "wind": {
+        "speed_ms": 1.59,
+        "speed_mph": 4,
+        "direction_degrees": 325
+      },
+      "temperature": {
+        "actual_c": 14.99,
+        "actual_f": 59,
+        "feels_like_c": 12.32,
+        "feels_like_f": 54
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 45
+    },
+    {
+      "time": "2026-04-05 23:00",
+      "wind": {
+        "speed_ms": 1.58,
+        "speed_mph": 4,
+        "direction_degrees": 318
+      },
+      "temperature": {
+        "actual_c": 13.84,
+        "actual_f": 57,
+        "feels_like_c": 11.16,
+        "feels_like_f": 52
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 48
+    },
+    {
+      "time": "2026-04-06 00:00",
+      "wind": {
+        "speed_ms": 1.49,
+        "speed_mph": 3,
+        "direction_degrees": 316
+      },
+      "temperature": {
+        "actual_c": 12.76,
+        "actual_f": 55,
+        "feels_like_c": 10.16,
+        "feels_like_f": 50
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 52
+    },
+    {
+      "time": "2026-04-06 01:00",
+      "wind": {
+        "speed_ms": 1.31,
+        "speed_mph": 3,
+        "direction_degrees": 317
+      },
+      "temperature": {
+        "actual_c": 11.83,
+        "actual_f": 53,
+        "feels_like_c": 9.34,
+        "feels_like_f": 49
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 55
+    },
+    {
+      "time": "2026-04-06 02:00",
+      "wind": {
+        "speed_ms": 1.16,
+        "speed_mph": 3,
+        "direction_degrees": 318
+      },
+      "temperature": {
+        "actual_c": 10.98,
+        "actual_f": 52,
+        "feels_like_c": 8.63,
+        "feels_like_f": 48
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 59
+    },
+    {
+      "time": "2026-04-06 03:00",
+      "wind": {
+        "speed_ms": 1.13,
+        "speed_mph": 3,
+        "direction_degrees": 316
+      },
+      "temperature": {
+        "actual_c": 10.14,
+        "actual_f": 50,
+        "feels_like_c": 7.85,
+        "feels_like_f": 46
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 64
+    },
+    {
+      "time": "2026-04-06 04:00",
+      "wind": {
+        "speed_ms": 1.11,
+        "speed_mph": 2,
+        "direction_degrees": 313
+      },
+      "temperature": {
+        "actual_c": 9.34,
+        "actual_f": 49,
+        "feels_like_c": 7.1,
+        "feels_like_f": 45
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 68
+    },
+    {
+      "time": "2026-04-06 05:00",
+      "wind": {
+        "speed_ms": 1.13,
+        "speed_mph": 3,
+        "direction_degrees": 312
+      },
+      "temperature": {
+        "actual_c": 8.74,
+        "actual_f": 48,
+        "feels_like_c": 6.52,
+        "feels_like_f": 44
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 71
+    },
+    {
+      "time": "2026-04-06 06:00",
+      "wind": {
+        "speed_ms": 1.11,
+        "speed_mph": 2,
+        "direction_degrees": 313
+      },
+      "temperature": {
+        "actual_c": 8.86,
+        "actual_f": 48,
+        "feels_like_c": 6.66,
+        "feels_like_f": 44
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 71
+    },
+    {
+      "time": "2026-04-06 07:00",
+      "wind": {
+        "speed_ms": 1.05,
+        "speed_mph": 2,
+        "direction_degrees": 316
+      },
+      "temperature": {
+        "actual_c": 10.12,
+        "actual_f": 50,
+        "feels_like_c": 8.02,
+        "feels_like_f": 46
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 67
+    },
+    {
+      "time": "2026-04-06 08:00",
+      "wind": {
+        "speed_ms": 0.9,
+        "speed_mph": 2,
+        "direction_degrees": 319
+      },
+      "temperature": {
+        "actual_c": 12.31,
+        "actual_f": 54,
+        "feels_like_c": 10.39,
+        "feels_like_f": 51
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 59
+    },
+    {
+      "time": "2026-04-06 09:00",
+      "wind": {
+        "speed_ms": 0.91,
+        "speed_mph": 2,
+        "direction_degrees": 325
+      },
+      "temperature": {
+        "actual_c": 14.88,
+        "actual_f": 59,
+        "feels_like_c": 13.01,
+        "feels_like_f": 55
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 51
+    },
+    {
+      "time": "2026-04-06 10:00",
+      "wind": {
+        "speed_ms": 1.01,
+        "speed_mph": 2,
+        "direction_degrees": 329
+      },
+      "temperature": {
+        "actual_c": 17.3,
+        "actual_f": 63,
+        "feels_like_c": 15.39,
+        "feels_like_f": 60
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 44
+    },
+    {
+      "time": "2026-04-06 11:00",
+      "wind": {
+        "speed_ms": 1.1,
+        "speed_mph": 2,
+        "direction_degrees": 323
+      },
+      "temperature": {
+        "actual_c": 19.5,
+        "actual_f": 67,
+        "feels_like_c": 17.52,
+        "feels_like_f": 64
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 38
+    },
+    {
+      "time": "2026-04-06 12:00",
+      "wind": {
+        "speed_ms": 1.14,
+        "speed_mph": 3,
+        "direction_degrees": 290
+      },
+      "temperature": {
+        "actual_c": 21.42,
+        "actual_f": 71,
+        "feels_like_c": 19.9,
+        "feels_like_f": 68
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 33
+    },
+    {
+      "time": "2026-04-06 13:00",
+      "wind": {
+        "speed_ms": 1.13,
+        "speed_mph": 3,
+        "direction_degrees": 250
+      },
+      "temperature": {
+        "actual_c": 23.0,
+        "actual_f": 73,
+        "feels_like_c": 21.86,
+        "feels_like_f": 71
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 29
+    },
+    {
+      "time": "2026-04-06 14:00",
+      "wind": {
+        "speed_ms": 1.22,
+        "speed_mph": 3,
+        "direction_degrees": 232
+      },
+      "temperature": {
+        "actual_c": 24.3,
+        "actual_f": 76,
+        "feels_like_c": 23.15,
+        "feels_like_f": 74
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 26
+    },
+    {
+      "time": "2026-04-06 15:00",
+      "wind": {
+        "speed_ms": 1.41,
+        "speed_mph": 3,
+        "direction_degrees": 217
+      },
+      "temperature": {
+        "actual_c": 25.29,
+        "actual_f": 78,
+        "feels_like_c": 23.66,
+        "feels_like_f": 75
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 24
+    },
+    {
+      "time": "2026-04-06 16:00",
+      "wind": {
+        "speed_ms": 1.65,
+        "speed_mph": 4,
+        "direction_degrees": 205
+      },
+      "temperature": {
+        "actual_c": 25.82,
+        "actual_f": 78,
+        "feels_like_c": 23.38,
+        "feels_like_f": 74
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 23
+    },
+    {
+      "time": "2026-04-06 17:00",
+      "wind": {
+        "speed_ms": 1.88,
+        "speed_mph": 4,
+        "direction_degrees": 199
+      },
+      "temperature": {
+        "actual_c": 25.52,
+        "actual_f": 78,
+        "feels_like_c": 22.76,
+        "feels_like_f": 73
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 24
+    },
+    {
+      "time": "2026-04-06 18:00",
+      "wind": {
+        "speed_ms": 2.1,
+        "speed_mph": 5,
+        "direction_degrees": 199
+      },
+      "temperature": {
+        "actual_c": 23.97,
+        "actual_f": 75,
+        "feels_like_c": 21.11,
+        "feels_like_f": 70
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 27
+    },
+    {
+      "time": "2026-04-06 19:00",
+      "wind": {
+        "speed_ms": 2.09,
+        "speed_mph": 5,
+        "direction_degrees": 203
+      },
+      "temperature": {
+        "actual_c": 21.72,
+        "actual_f": 71,
+        "feels_like_c": 19.02,
+        "feels_like_f": 66
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 33
+    },
+    {
+      "time": "2026-04-06 20:00",
+      "wind": {
+        "speed_ms": 2.14,
+        "speed_mph": 5,
+        "direction_degrees": 208
+      },
+      "temperature": {
+        "actual_c": 19.17,
+        "actual_f": 67,
+        "feels_like_c": 16.42,
+        "feels_like_f": 62
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 38
+    },
+    {
+      "time": "2026-04-06 21:00",
+      "wind": {
+        "speed_ms": 2.14,
+        "speed_mph": 5,
+        "direction_degrees": 216
+      },
+      "temperature": {
+        "actual_c": 17.05,
+        "actual_f": 63,
+        "feels_like_c": 14.31,
+        "feels_like_f": 58
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 44
+    },
+    {
+      "time": "2026-04-06 22:00",
+      "wind": {
+        "speed_ms": 2.13,
+        "speed_mph": 5,
+        "direction_degrees": 226
+      },
+      "temperature": {
+        "actual_c": 15.03,
+        "actual_f": 59,
+        "feels_like_c": 12.29,
+        "feels_like_f": 54
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 50
+    },
+    {
+      "time": "2026-04-06 23:00",
+      "wind": {
+        "speed_ms": 2.13,
+        "speed_mph": 5,
+        "direction_degrees": 233
+      },
+      "temperature": {
+        "actual_c": 13.24,
+        "actual_f": 56,
+        "feels_like_c": 10.5,
+        "feels_like_f": 51
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 56
+    },
+    {
+      "time": "2026-04-07 00:00",
+      "wind": {
+        "speed_ms": 2.18,
+        "speed_mph": 5,
+        "direction_degrees": 233
+      },
+      "temperature": {
+        "actual_c": 11.67,
+        "actual_f": 53,
+        "feels_like_c": 8.9,
+        "feels_like_f": 48
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 63
+    },
+    {
+      "time": "2026-04-07 01:00",
+      "wind": {
+        "speed_ms": 2.18,
+        "speed_mph": 5,
+        "direction_degrees": 228
+      },
+      "temperature": {
+        "actual_c": 10.51,
+        "actual_f": 51,
+        "feels_like_c": 7.72,
+        "feels_like_f": 46
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 67
+    },
+    {
+      "time": "2026-04-07 02:00",
+      "wind": {
+        "speed_ms": 2.23,
+        "speed_mph": 5,
+        "direction_degrees": 224
+      },
+      "temperature": {
+        "actual_c": 9.73,
+        "actual_f": 50,
+        "feels_like_c": 6.92,
+        "feels_like_f": 44
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 71
+    },
+    {
+      "time": "2026-04-07 03:00",
+      "wind": {
+        "speed_ms": 2.32,
+        "speed_mph": 5,
+        "direction_degrees": 220
+      },
+      "temperature": {
+        "actual_c": 9.2,
+        "actual_f": 49,
+        "feels_like_c": 6.34,
+        "feels_like_f": 43
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 74
+    },
+    {
+      "time": "2026-04-07 04:00",
+      "wind": {
+        "speed_ms": 2.4,
+        "speed_mph": 5,
+        "direction_degrees": 217
+      },
+      "temperature": {
+        "actual_c": 8.97,
+        "actual_f": 48,
+        "feels_like_c": 6.04,
+        "feels_like_f": 43
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 75
+    },
+    {
+      "time": "2026-04-07 05:00",
+      "wind": {
+        "speed_ms": 2.47,
+        "speed_mph": 6,
+        "direction_degrees": 214
+      },
+      "temperature": {
+        "actual_c": 8.81,
+        "actual_f": 48,
+        "feels_like_c": 5.81,
+        "feels_like_f": 42
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 75
+    },
+    {
+      "time": "2026-04-07 06:00",
+      "wind": {
+        "speed_ms": 2.13,
+        "speed_mph": 5,
+        "direction_degrees": 213
+      },
+      "temperature": {
+        "actual_c": 9.28,
+        "actual_f": 49,
+        "feels_like_c": 6.5,
+        "feels_like_f": 44
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 72
+    },
+    {
+      "time": "2026-04-07 07:00",
+      "wind": {
+        "speed_ms": 2.15,
+        "speed_mph": 5,
+        "direction_degrees": 212
+      },
+      "temperature": {
+        "actual_c": 10.91,
+        "actual_f": 52,
+        "feels_like_c": 8.16,
+        "feels_like_f": 47
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 66
+    },
+    {
+      "time": "2026-04-07 08:00",
+      "wind": {
+        "speed_ms": 2.17,
+        "speed_mph": 5,
+        "direction_degrees": 216
+      },
+      "temperature": {
+        "actual_c": 13.57,
+        "actual_f": 56,
+        "feels_like_c": 10.88,
+        "feels_like_f": 52
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 56
+    },
+    {
+      "time": "2026-04-07 09:00",
+      "wind": {
+        "speed_ms": 2.77,
+        "speed_mph": 6,
+        "direction_degrees": 223
+      },
+      "temperature": {
+        "actual_c": 16.6,
+        "actual_f": 62,
+        "feels_like_c": 13.55,
+        "feels_like_f": 56
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 47
+    },
+    {
+      "time": "2026-04-07 10:00",
+      "wind": {
+        "speed_ms": 3.68,
+        "speed_mph": 8,
+        "direction_degrees": 229
+      },
+      "temperature": {
+        "actual_c": 19.14,
+        "actual_f": 66,
+        "feels_like_c": 15.43,
+        "feels_like_f": 60
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 40
+    },
+    {
+      "time": "2026-04-07 11:00",
+      "wind": {
+        "speed_ms": 4.36,
+        "speed_mph": 10,
+        "direction_degrees": 234
+      },
+      "temperature": {
+        "actual_c": 21.32,
+        "actual_f": 70,
+        "feels_like_c": 17.14,
+        "feels_like_f": 63
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 33
+    },
+    {
+      "time": "2026-04-07 12:00",
+      "wind": {
+        "speed_ms": 4.63,
+        "speed_mph": 10,
+        "direction_degrees": 240
+      },
+      "temperature": {
+        "actual_c": 23.06,
+        "actual_f": 74,
+        "feels_like_c": 19.06,
+        "feels_like_f": 66
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 28
+    },
+    {
+      "time": "2026-04-07 13:00",
+      "wind": {
+        "speed_ms": 4.71,
+        "speed_mph": 11,
+        "direction_degrees": 247
+      },
+      "temperature": {
+        "actual_c": 24.34,
+        "actual_f": 76,
+        "feels_like_c": 20.46,
+        "feels_like_f": 69
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 24
+    },
+    {
+      "time": "2026-04-07 14:00",
+      "wind": {
+        "speed_ms": 4.86,
+        "speed_mph": 11,
+        "direction_degrees": 255
+      },
+      "temperature": {
+        "actual_c": 25.16,
+        "actual_f": 77,
+        "feels_like_c": 21.09,
+        "feels_like_f": 70
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 21
+    },
+    {
+      "time": "2026-04-07 15:00",
+      "wind": {
+        "speed_ms": 4.91,
+        "speed_mph": 11,
+        "direction_degrees": 265
+      },
+      "temperature": {
+        "actual_c": 25.47,
+        "actual_f": 78,
+        "feels_like_c": 20.93,
+        "feels_like_f": 70
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 20
+    },
+    {
+      "time": "2026-04-07 16:00",
+      "wind": {
+        "speed_ms": 4.87,
+        "speed_mph": 11,
+        "direction_degrees": 277
+      },
+      "temperature": {
+        "actual_c": 25.36,
+        "actual_f": 78,
+        "feels_like_c": 20.21,
+        "feels_like_f": 68
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 19
+    },
+    {
+      "time": "2026-04-07 17:00",
+      "wind": {
+        "speed_ms": 4.96,
+        "speed_mph": 11,
+        "direction_degrees": 287
+      },
+      "temperature": {
+        "actual_c": 24.31,
+        "actual_f": 76,
+        "feels_like_c": 18.61,
+        "feels_like_f": 65
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 19
+    },
+    {
+      "time": "2026-04-07 18:00",
+      "wind": {
+        "speed_ms": 4.86,
+        "speed_mph": 11,
+        "direction_degrees": 293
+      },
+      "temperature": {
+        "actual_c": 22.36,
+        "actual_f": 72,
+        "feels_like_c": 16.79,
+        "feels_like_f": 62
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 22
+    },
+    {
+      "time": "2026-04-07 19:00",
+      "wind": {
+        "speed_ms": 4.77,
+        "speed_mph": 11,
+        "direction_degrees": 297
+      },
+      "temperature": {
+        "actual_c": 19.52,
+        "actual_f": 67,
+        "feels_like_c": 14.08,
+        "feels_like_f": 57
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 27
+    },
+    {
+      "time": "2026-04-07 20:00",
+      "wind": {
+        "speed_ms": 4.69,
+        "speed_mph": 10,
+        "direction_degrees": 298
+      },
+      "temperature": {
+        "actual_c": 16.78,
+        "actual_f": 62,
+        "feels_like_c": 11.37,
+        "feels_like_f": 52
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 31
+    },
+    {
+      "time": "2026-04-07 21:00",
+      "wind": {
+        "speed_ms": 4.11,
+        "speed_mph": 9,
+        "direction_degrees": 292
+      },
+      "temperature": {
+        "actual_c": 14.49,
+        "actual_f": 58,
+        "feels_like_c": 9.44,
+        "feels_like_f": 49
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 36
+    },
+    {
+      "time": "2026-04-07 22:00",
+      "wind": {
+        "speed_ms": 3.21,
+        "speed_mph": 7,
+        "direction_degrees": 279
+      },
+      "temperature": {
+        "actual_c": 12.71,
+        "actual_f": 55,
+        "feels_like_c": 8.26,
+        "feels_like_f": 47
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 40
+    },
+    {
+      "time": "2026-04-07 23:00",
+      "wind": {
+        "speed_ms": 2.48,
+        "speed_mph": 6,
+        "direction_degrees": 264
+      },
+      "temperature": {
+        "actual_c": 11.13,
+        "actual_f": 52,
+        "feels_like_c": 7.19,
+        "feels_like_f": 45
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 44
+    },
+    {
+      "time": "2026-04-08 00:00",
+      "wind": {
+        "speed_ms": 2.18,
+        "speed_mph": 5,
+        "direction_degrees": 254
+      },
+      "temperature": {
+        "actual_c": 9.63,
+        "actual_f": 49,
+        "feels_like_c": 5.95,
+        "feels_like_f": 43
+      },
+      "precipitation_mm": 0.0,
+      "relative_humidity": 50
+    }
+  ]
+}

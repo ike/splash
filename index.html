@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather</title>
+    <style>
+     body { font-family: sans-serif; max-width: 900px; margin: 0 auto; padding: 1em; }
+      table { border-collapse: collapse; width: 100%; margin-bottom: 2em; }
+      th, td { border: 1px solid #ccc; padding: 4px 8px; text-align: center; font-size: 0.85em; }
+      th { background: #eee; }
+      .summary { display: flex; gap: 2em; flex-wrap: wrap; margin-bottom: 2em; }
+      .card { background: #f5f5f5; border-radius: 8px; padding: 1em 1.5em; min-width: 180px; }
+      .card h3 { margin: 0 0 0.5em 0; }
+
+      /* Humidity: white (low) to blue (high), range 0–100% */
+      td.humidity-0 { background: hsl(210, 100%, 100%); }
+      td.humidity-10 { background: hsl(210, 100%, 95%); }
+      td.humidity-20 { background: hsl(210, 100%, 90%); }
+      td.humidity-30 { background: hsl(210, 100%, 85%); }
+      td.humidity-40 { background: hsl(210, 100%, 78%); }
+      td.humidity-50 { background: hsl(210, 100%, 70%); }
+      td.humidity-60 { background: hsl(210, 100%, 62%); }
+      td.humidity-70 { background: hsl(210, 100%, 54%); }
+      td.humidity-80 { background: hsl(210, 100%, 46%); }
+      td.humidity-90 { background: hsl(210, 100%, 38%); }
+      td.humidity-100 { background: hsl(210, 100%, 30%); }
+
+      /* Temperature: blue (low) to red (high), green centered on 80°F (~27°C) */
+      td.temp-verycold { background: hsl(240, 80%, 60%); }   /* -10 to 0°C */
+      td.temp-cold { background: hsl(200, 80%, 65%); }       /* 0 to 10°C */
+      td.temp-cool { background: hsl(160, 60%, 65%); }       /* 10 to 18°C */
+      td.temp-mild { background: hsl(140, 60%, 65%); }       /* 18 to 24°C */
+      td.temp-warm { background: hsl(120, 70%, 60%); }       /* 24 to 30°C (80°F) */
+      td.temp-hot { background: hsl(40, 90%, 60%); }         /* 30 to 35°C */
+      td.temp-veryhot { background: hsl(0, 90%, 50%); }      /* 35°C+ */
+
+      /* Wind speed: white (0) to green (11m/s) to red (19+m/s) */
+      td.wind-speed-calm { background: #ffffff; }             /* 0–3 m/s */
+      td.wind-speed-light { background: #d4f0c0; }           /* 3–6 m/s */
+      td.wind-speed-moderate { background: #a8e6a3; }        /* 6–9 m/s */
+      td.wind-speed-fresh { background: #f4e04a; }           /* 9–12 m/s */
+      td.wind-speed-strong { background: #f4a430; }          /* 12–16 m/s */
+      td.wind-speed-gale { background: #e05020; }            /* 16+ m/s */
+
+      /* Wind direction: green if SW–SE (135°–225°), orange otherwise */
+      td.wind-dir-good { background: #a8e6a3; }
+      td.wind-dir-mid { background: #f4e04a; }
+      td.wind-dir-bad { background: #f4a460; }
+
+      /* Precipitation: very light blue for any non-zero value */
+      td.precip { background: #d0eeff; }
+    </style>
+  </head>
+
+  <body>
+    <img src="webcam.jpg" style="max-width:100%;"/>
+
+    <h1>Today's Summary</h1>
+    <div class="summary" id="summary"></div>
+
+    <h2>Hourly Forecast</h2>
+    <div style="overflow-x:auto;">
+      <table id="hourly-table">
+        <thead>
+          <tr>
+           <th>Time</th>
+            <th>Temp (&deg;C / &deg;F)</th>
+            <th>Feels Like (&deg;C / &deg;F)</th>
+            <th>Wind (m/s)</th>
+            <th>Wind Dir (&deg;)</th>
+            <th>Precip (mm)</th>
+            <th>Humidity (%)</th>
+          </tr>
+        </thead>
+        <tbody id="hourly-body"></tbody>
+      </table>
+    </div>
+
+    <script>
+      fetch('./weather.json')
+        .then(r => r.json())
+        .then(data => {
+          // Summary cards
+          const today = data.today;
+          const summary = document.getElementById('summary');
+          summary.innerHTML = `
+            <div class="card">
+              <h3>Wind</h3>
+              <p>Avg: ${today.wind.average_ms} m/s (${today.wind.average_mph} mph)</p>
+              <p>Peak: ${today.wind.peak_ms} m/s (${today.wind.peak_mph} mph)</p>
+              <p>Direction: ${today.wind_direction_degrees}&deg;</p>
+            </div>
+            <div class="card">
+              <h3>Temperature</h3>
+              <p>Low: ${today.temperature.low_c}&deg;C / ${today.temperature.low_f}&deg;F</p>
+              <p>High: ${today.temperature.high_c}&deg;C / ${today.temperature.high_f}&deg;F</p>
+              <p>Feels Like Avg: ${today.temperature.feels_like_avg_c}&deg;C / ${today.temperature.feels_like_avg_f}&deg;F</p>
+            </div>
+          `;
+
+          // Hourly table
+          const tbody = document.getElementById('hourly-body');
+          const nowPlainDate = Temporal.Now.plainDateISO();
+          const tomorrowPlainDate = nowPlainDate.add({ days: 1 });
+
+          function formatTime(isoString) {
+            const dt = Temporal.PlainDateTime.from(isoString);
+            const date = dt.toPlainDate();
+            const timeStr = dt.toPlainTime().toString({ smallestUnit: 'minute' });
+            let dayLabel;
+            if (Temporal.PlainDate.compare(date, nowPlainDate) === 0) {
+              dayLabel = 'Today';
+            } else if (Temporal.PlainDate.compare(date, tomorrowPlainDate) === 0) {
+              dayLabel = 'Tomorrow';
+            } else {
+              dayLabel = new Date(isoString).toLocaleDateString(undefined, { weekday: 'long' });
+            }
+            return `${dayLabel}, ${timeStr}`;
+          }
+
+          function getTempClass(c) {
+            if (c === null || c === undefined) return '';
+            if (c < 0) return 'temp-verycold';
+            if (c < 10) return 'temp-cold';
+            if (c < 18) return 'temp-cool';
+            if (c < 24) return 'temp-mild';
+            if (c < 30) return 'temp-warm';
+            if (c < 35) return 'temp-hot';
+            return 'temp-veryhot';
+          }
+
+          function getWindSpeedClass(ms) {
+            if (ms === null || ms === undefined) return '';
+            if (ms < 3) return 'wind-speed-calm';
+            if (ms < 6) return 'wind-speed-light';
+            if (ms < 9) return 'wind-speed-moderate';
+            if (ms < 12) return 'wind-speed-fresh';
+            if (ms < 16) return 'wind-speed-strong';
+            return 'wind-speed-gale';
+          }
+
+          function getWindDirClass(deg) {
+            if (deg === null || deg === undefined) return '';
+            if (deg >= 135 && deg <= 225) return 'wind-dir-good';
+            if ((deg >= 90 && deg < 135) || (deg > 225 && deg <= 270)) return 'wind-dir-mid';
+            return 'wind-dir-bad';
+          }
+
+         function getHumidityClass(h) {
+            if (h === null || h === undefined) return '';
+            const bucket = Math.min(100, Math.max(0, Math.round(h / 10) * 10));
+            return `humidity-${bucket}`;
+          }
+
+          function getPrecipClass(mm) {
+            if (mm === null || mm === undefined || mm === 0) return '';
+            return 'precip';
+          }
+
+          data.hourly.forEach((h, i) => {
+            const row = document.createElement('tr');
+            const fmt = v => (v === null || v === undefined) ? '\u2014' : v;
+            const temp = h.temperature || {};
+            const wind = h.wind || {};
+            row.innerHTML = `
+              <td>${formatTime(h.time)}</td>
+              <td data-value="${fmt(temp.actual_c)}" class="${getTempClass(temp.actual_c)}">${fmt(temp.actual_c)} / ${fmt(temp.actual_f)}</td>
+              <td data-value="${fmt(temp.feels_like_c)}" class="${getTempClass(temp.feels_like_c)}">${fmt(temp.feels_like_c)} / ${fmt(temp.feels_like_f)}</td>
+              <td data-value="${fmt(wind.speed_ms)}" class="${getWindSpeedClass(wind.speed_ms)}">${fmt(wind.speed_ms)}</td>
+              <td data-value="${fmt(wind.direction_degrees)}" class="${getWindDirClass(wind.direction_degrees)}">${fmt(wind.direction_degrees)}</td>
+              <td data-value="${fmt(h.precipitation_mm)}" class="${getPrecipClass(h.precipitation_mm)}">${fmt(h.precipitation_mm)}</td>
+              <td data-value="${fmt(h.relative_humidity)}" class="${getHumidityClass(h.relative_humidity)}">${fmt(h.relative_humidity)}</td>
+            `;
+            tbody.appendChild(row);
+          });
+      });
+    </script>
+  </body>
+</html>
