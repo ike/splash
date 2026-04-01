@@ -53,3 +53,5 @@ echo "$data" | jq '{
     end
   )
 }' > weather.json
+
+./generate_html.sh weather.json index.html
