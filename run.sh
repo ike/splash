@@ -56,4 +56,9 @@ echo "$data" | jq '{
   )
 }' > weather.json
 
+SPLASH_DIR=$(dirname "$SPLASH_HTML_FILE_PATH")
+if [ "$SPLASH_DIR" != "." ]; then
+  cp webcam.jpg "$SPLASH_DIR/webcam.jpg"
+fi
+
 ./generate_html.sh weather.json $SPLASH_HTML_FILE_PATH
