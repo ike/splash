@@ -1,7 +1,12 @@
 #!/bin/bash
 
-OUTPUT_HTML="${OUTPUT_HTML:-index.html}"
-SW_JS="${SW_JS:-sw.js}"
+OUTPUT_HTML="${1:-index.html}"
+SW_JS="${2:-sw.js}"
+OUTPUT_DIR="$(dirname "$OUTPUT_HTML")"
+WEATHER_JSON="./weather.json"
+WATER_JSON="./water.json"
+SW_JS_PATH="$OUTPUT_DIR/$(basename "$SW_JS")"
+MANIFEST_JSON="$OUTPUT_DIR/manifest.json"
 
 # ── write service worker ───────────────────────────────────────────────────────
 
@@ -10,8 +15,7 @@ WEBCAM_IMG="$(dirname "$OUTPUT_HTML")/webcam.jpg"
 CACHE_VERSION=$(md5sum "$WEATHER_JSON" "$WATER_JSON" "$WEBCAM_IMG" 2>/dev/null | md5sum | cut -c1-12 || \
                 md5 -q "$WEATHER_JSON" "$WATER_JSON" "$WEBCAM_IMG" 2>/dev/null | head -c12)
 
-SW_JS="$(dirname "$OUTPUT_HTML")/sw.js"
-cat > "$SW_JS" << SWEOF
+cat > "$SW_JS_PATH" << SWEOF
 // Cache name is read from the manifest at runtime
 const ASSETS = [
   './',
@@ -92,7 +96,6 @@ SWEOF
 
 # ── write web app manifest ─────────────────────────────────────────────────────
 
-MANIFEST_JSON="$(dirname "$OUTPUT_HTML")/manifest.json"
 cat > "$MANIFEST_JSON" << MANIFESTEOF
 {
   "name": "Weather",
