@@ -4,7 +4,8 @@
 set -euo pipefail
 
 WEATHER_JSON="${1:-weather.json}"
-OUTPUT_HTML="${2:-index.html}"
+WATER_JSON="${2:-water.json}"
+OUTPUT_HTML="${3:-index.html}"
 
 if ! command -v jq &>/dev/null; then
   echo "Error: jq is required." >&2; exit 1
@@ -14,6 +15,14 @@ if [[ ! -f "$WEATHER_JSON" ]]; then
 fi
 if ! jq empty "$WEATHER_JSON" 2>/dev/null; then
   echo "Error: invalid JSON in '$WEATHER_JSON'." >&2; exit 1
+fi
+if [[ ! -f "$WATER_JSON" ]]; then
+  PASCO_WATER_TEMP="n/a"
+fi
+if [[ -f "$WATER_JSON" ]]; then
+  if ! jq empty "$WATER_JSON" 2>/dev/null; then
+    PASCO_WATER_TEMP="n/a"
+  fi
 fi
 
 # ── helpers ────────────────────────────────────────────────────────────────────
@@ -136,6 +145,7 @@ build_range_labels() {
 
 TODAY=$(date +%Y-%m-%d)
 TOMORROW=$(date -d "+1 day" +%Y-%m-%d 2>/dev/null || date -v+1d +%Y-%m-%d)
+DATE_STRING=$(date -d "$TODAY" +"%A %B %e, %Y" 2>/dev/null || date -j -f "%Y-%m-%d" "$TODAY" +"%A %B %e, %Y")
 
 # ── summary values ─────────────────────────────────────────────────────────────
 
@@ -150,6 +160,8 @@ HIGH_F=$(jq -r '.today.temperature.high_f // "null"' "$WEATHER_JSON")
 
 AVG_KTS=$(ms_to_kts "$AVG_MS")
 PEAK_KTS=$(ms_to_kts "$PEAK_MS")
+
+PASCO_WATER_TEMP=$(jq -r '.pasco.temperature // "null"' "$WATER_JSON")
 
 # ── bike callout ───────────────────────────────────────────────────────────────
 
@@ -247,12 +259,33 @@ while IFS= read -r row; do
   SPEED_KTS=$(ms_to_kts "$SPEED_MS")
   TIME_LABEL=$(format_time "$TIME")
 
+  # Convert wind direction degrees to an arrow character
+  if [[ -z "$DIR" || "$DIR" == "null" ]]; then
+    DIR_ARROW="—"
+  else
+    DIR_ARROW=$(echo "$DIR" | awk '{
+      d = ($1 % 360 + 360) % 360
+      # Arrow points in the direction wind is going (from opposite)
+      # We rotate by adding 180 to get "coming from" -> "going to"
+      idx = int((d + 22.5) / 45) % 8
+      arrows[0] = "&#x2193;"
+      arrows[1] = "&#x2199;"
+      arrows[2] = "&#x2190;"
+      arrows[3] = "&#x2196;"
+      arrows[4] = "&#x2191;"
+      arrows[5] = "&#x2197;"
+      arrows[6] = "&#x2192;"
+      arrows[7] = "&#x2198;"
+      print arrows[idx]
+    }')
+  fi
+
   HOURLY_ROWS="${HOURLY_ROWS}  <tr>
     <td>$(fmt "$TIME_LABEL")</td>
     <td class=\"$(get_temp_class "$ACTUAL_C")\">$(fmt "$ACTUAL_C") / $(fmt "$ACTUAL_F")</td>
     <td class=\"$(get_temp_class "$FEELS_C")\">$(fmt "$FEELS_C") / $(fmt "$FEELS_F")</td>
     <td class=\"$(get_wind_speed_class "$SPEED_KTS")\">$(fmt "$SPEED_KTS")</td>
-    <td class=\"$(get_wind_dir_class "$DIR")\">$(fmt "$DIR")</td>
+    <td class=\"$(get_wind_dir_class "$DIR")\">$(fmt "$DIR_ARROW")</td>
     <td class=\"$(get_precip_class "$PRECIP")\">$(fmt "$PRECIP")</td>
     <td class=\"$(get_humidity_class "$HUMIDITY")\">$(fmt "$HUMIDITY")</td>
   </tr>
@@ -262,6 +295,10 @@ done < <(jq -c '.hourly[]' "$WEATHER_JSON")
 # ── write output ───────────────────────────────────────────────────────────────
 
 {
+# Generate a cache-busting version hash from the weather JSON content
+CACHE_VERSION=$(md5sum "$WEATHER_JSON" "$WATER_JSON" 2>/dev/null | md5sum | cut -c1-12 || \
+                md5 -q "$WEATHER_JSON" "$WATER_JSON" 2>/dev/null | head -c12)
+
 cat << 'HTML'
 <!DOCTYPE html>
 <html>
@@ -313,18 +350,26 @@ cat << 'HTML'
       #kagi-search { margin-bottom: 1em; }
       #kagi-search input[type="text"] { width: 100%; padding: 0.5em 0.75em; font-size: 1em; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
     </style>
+    <link rel="manifest" href="manifest.json">
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js');
+      }
+    </script>
   </head>
+HTML
+
+cat << HTML
   <body>
-    <form id="kagi-search" action="https://kagi.com/search" method="get" target="_self">
-      <input type="text" name="q" placeholder="Search Kagi…" autofocus />
-    </form>
+    <!-- <form id="kagi-search" action="https://kagi.com/search" method="get" target="_self">
+       <input type="text" name="q" placeholder="Search Kagi…" autofocus />
+    </form> -->
 
     <div class="top-layout">
       <img src="webcam.jpg" class="webcam-img"/>
       <div class="callout-col">
-HTML
 
-cat << HTML
+
         <div class="card callout-card" style="border-left-color: ${BIKE_COLOR}">
           <h3>Bike</h3>
           <p>${BIKE_STATUS}</p>
@@ -348,10 +393,14 @@ cat << HTML
           <p>High: ${HIGH_C}&deg;C / ${HIGH_F}&deg;F</p>
         </div>
 
+        <div class="card callout-card">
+          <h3>Water: ${PASCO_WATER_TEMP}&deg;F</h3>
+        </div>
+
       </div>
     </div>
 
-    <h2>Hourly Forecast</h2>
+    <h2 class="time"><span id="date">${DATE_STRING}</span> <span id="time"></span></h2>
     <div class="overflow-auto">
       <table>
         <thead>
@@ -373,13 +422,82 @@ ${HOURLY_ROWS}
     <script>
       // Focus search input on load
       // with a small timeout
-      setTimeout(() => {
-        document.getElementById('kagi-search').querySelector('input[type="text"]').focus();
-      }, 150);
+      // setTimeout(() => {
+      //   document.getElementById('kagi-search').querySelector('input[type="text"]').focus();
+      // }, 150);
+      timeElem = document.querySelector('#time');
+      if (timeElem) {
+        // Get nice date in Pacific time zone
+        const now = new Date();
+        const options = { hour: '2-digit', minute: '2-digit', timeZone: 'America/Los_Angeles' };
+        timeElem.textContent = now.toLocaleString('en-US', options);
+      }
     </script>
   </body>
 </html>
 HTML
 } > "$OUTPUT_HTML"
 
+# ── write service worker ───────────────────────────────────────────────────────
+
+SW_JS="$(dirname "$OUTPUT_HTML")/sw.js"
+cat > "$SW_JS" << SWEOF
+const CACHE_NAME = 'weather-v${CACHE_VERSION}';
+const ASSETS = [
+  './',
+  './index.html',
+  './webcam.jpg',
+];
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
+  );
+  self.skipWaiting();
+});
+
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys =>
+      Promise.all(
+        keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
+      )
+    )
+  );
+  self.clients.claim();
+});
+
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request).then(cached => {
+      if (cached) return cached;
+      return fetch(event.request).then(response => {
+        if (!response || response.status !== 200 || response.type === 'opaque') {
+          return response;
+        }
+        const clone = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+        return response;
+      });
+    })
+  );
+});
+SWEOF
+
+# ── write web app manifest ─────────────────────────────────────────────────────
+
+MANIFEST_JSON="$(dirname "$OUTPUT_HTML")/manifest.json"
+cat > "$MANIFEST_JSON" << MANIFESTEOF
+{
+  "name": "Weather",
+  "short_name": "Weather",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#eeeeee"
+}
+MANIFESTEOF
+
 echo "Generated: $OUTPUT_HTML"
+echo "Generated: $SW_JS"
+echo "Generated: $MANIFEST_JSON"
