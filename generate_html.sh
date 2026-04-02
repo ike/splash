@@ -104,8 +104,8 @@ format_time() {
     label="Today"
   elif [[ "$date_part" == "$TOMORROW" ]]; then
     label="Tomorrow"
-  else
-    label=$(date -d "$date_part" +"%A" 2>/dev/null || date -j -f "%Y-%m-%d" "$date_part" +"%A")
+ else
+    label=$(date -j -f "%Y-%m-%d" "$date_part" +"%A" 2>/dev/null || date -d "$date_part" +"%A")
   fi
   echo "${label}, ${time_part}"
 }
@@ -145,7 +145,7 @@ build_range_labels() {
 
 TODAY=$(date +%Y-%m-%d)
 TOMORROW=$(date -d "+1 day" +%Y-%m-%d 2>/dev/null || date -v+1d +%Y-%m-%d)
-DATE_STRING=$(date -d "$TODAY" +"%A %B %e, %Y" 2>/dev/null || date -j -f "%Y-%m-%d" "$TODAY" +"%A %B %e, %Y")
+DATE_STRING=$(date +"%A %B %e, %Y")
 
 # ── summary values ─────────────────────────────────────────────────────────────
 
@@ -237,7 +237,7 @@ if [[ -n "$FIRST_FUTURE_DATE" ]]; then
   if [[ "$FIRST_FUTURE_DATE" == "$TOMORROW" ]]; then
     FUTURE_DAY_LABEL="Tomorrow"
   else
-    FUTURE_DAY_LABEL=$(date -d "$FIRST_FUTURE_DATE" +"%A" 2>/dev/null || date -j -f "%Y-%m-%d" "$FIRST_FUTURE_DATE" +"%A")
+   FUTURE_DAY_LABEL=$(date -j -f "%Y-%m-%d" "$FIRST_FUTURE_DATE" +"%A" 2>/dev/null || date -d "$FIRST_FUTURE_DATE" +"%A")
   fi
   NEXT_WINDOW_HTML='<div class="next-window">Next: '"${FUTURE_DAY_LABEL}"'<br>'"${FUTURE_RANGES}"'</div>'
 fi
