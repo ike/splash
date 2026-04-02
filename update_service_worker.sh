@@ -1,7 +1,7 @@
 #!/bin/bash
 
-$OUTPUT_HTML="${OUTPUT_HTML:-index.html}"
-$SW_JS="${SW_JS:-sw.js}"
+OUTPUT_HTML="${OUTPUT_HTML:-index.html}"
+SW_JS="${SW_JS:-sw.js}"
 
 # ── write service worker ───────────────────────────────────────────────────────
 
