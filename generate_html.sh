@@ -295,9 +295,10 @@ done < <(jq -c '.hourly[]' "$WEATHER_JSON")
 # ── write output ───────────────────────────────────────────────────────────────
 
 {
-# Generate a cache-busting version hash from the weather JSON content
-CACHE_VERSION=$(md5sum "$WEATHER_JSON" "$WATER_JSON" 2>/dev/null | md5sum | cut -c1-12 || \
-                md5 -q "$WEATHER_JSON" "$WATER_JSON" 2>/dev/null | head -c12)
+# Generate a cache-busting version hash from the weather JSON content and webcam image
+WEBCAM_IMG="$(dirname "$OUTPUT_HTML")/webcam.jpg"
+CACHE_VERSION=$(md5sum "$WEATHER_JSON" "$WATER_JSON" "$WEBCAM_IMG" 2>/dev/null | md5sum | cut -c1-12 || \
+                md5 -q "$WEATHER_JSON" "$WATER_JSON" "$WEBCAM_IMG" 2>/dev/null | head -c12)
 
 cat << 'HTML'
 <!DOCTYPE html>
