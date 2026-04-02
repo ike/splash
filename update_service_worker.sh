@@ -108,5 +108,5 @@ cat > "$MANIFEST_JSON" << MANIFESTEOF
 }
 MANIFESTEOF
 
-echo "Generated: $SW_JS"
+echo "Generated: $SW_JS_PATH"
 echo "Generated: $MANIFEST_JSON"
