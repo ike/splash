@@ -436,19 +436,5 @@ HTML
 
 ./update_service_worker.sh "$OUTPUT_HTML" sw.js
 
-# ── write web app manifest ─────────────────────────────────────────────────────
-
-MANIFEST_JSON="$(dirname "$OUTPUT_HTML")/manifest.json"
-cat > "$MANIFEST_JSON" << MANIFESTEOF
-{
-  "name": "Weather",
-  "short_name": "Weather",
-  "start_url": "./",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#eeeeee"
-}
-MANIFESTEOF
 
 echo "Generated: $OUTPUT_HTML"
-echo "Generated: $MANIFEST_JSON"
