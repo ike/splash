@@ -451,5 +451,4 @@ cat > "$MANIFEST_JSON" << MANIFESTEOF
 MANIFESTEOF
 
 echo "Generated: $OUTPUT_HTML"
-echo "Generated: $SW_JS"
 echo "Generated: $MANIFEST_JSON"

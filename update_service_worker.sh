@@ -1,6 +1,7 @@
 #!/bin/bash
 
 $OUTPUT_HTML="${OUTPUT_HTML:-index.html}"
+$SW_JS="${SW_JS:-sw.js}"
 
 # ── write service worker ───────────────────────────────────────────────────────
 
@@ -52,3 +53,5 @@ self.addEventListener('fetch', event => {
   );
 });
 SWEOF
+
+echo "Generated: $SW_JS"
