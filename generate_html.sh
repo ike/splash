@@ -283,7 +283,7 @@ while IFS= read -r row; do
   HOURLY_ROWS="${HOURLY_ROWS}  <tr>
     <td>$(fmt "$TIME_LABEL")</td>
     <td class=\"$(get_temp_class "$ACTUAL_C")\">$(fmt "$ACTUAL_C") / $(fmt "$ACTUAL_F")</td>
-    <td class=\"$(get_temp_class "$FEELS_C")\">$(fmt "$FEELS_C") / $(fmt "$FEELS_F")</td>
+    <td class=\"$(get_temp_class "$FEELS_C") feels-like\">$(fmt "$FEELS_C") / $(fmt "$FEELS_F")</td>
     <td class=\"$(get_wind_speed_class "$SPEED_KTS")\">$(fmt "$SPEED_KTS")</td>
     <td class=\"$(get_wind_dir_class "$DIR")\">$(fmt "$DIR_ARROW")</td>
     <td class=\"$(get_precip_class "$PRECIP")\">$(fmt "$PRECIP")</td>
@@ -347,11 +347,17 @@ cat << 'HTML'
       #kagi-search input[type="text"] { width: 100%; padding: 0.5em 0.75em; font-size: 1em; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
 
       @media print {
+        /* ── Print bar chart CSS variables ── */
+        :root {
+          --print-header-color: #333;
+          --print-bar-color: #eaeaea;
+          --print-bar-transparent: transparent;
+        }
+
 
         /* ── Page setup ── */
         @page {
           size: letter landscape;
-          margin: 0.45in 0.4in 0.4in;
         }
 
         /* ── Kill screen chrome ── */
@@ -390,7 +396,7 @@ cat << 'HTML'
           text-transform: uppercase;
           border-bottom: 0.5pt solid #000;
           padding-bottom: 2pt;
-          margin: 0 0 4pt 0;
+          margin: 0;
           text-align: center;
         }
 
@@ -434,7 +440,7 @@ cat << 'HTML'
         }
 
         thead th {
-          background: #000 !important;
+          background: var(--print-header-color) !important;
           color: #fff !important;
           -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
@@ -450,59 +456,121 @@ cat << 'HTML'
           font-weight: bold;
         }
 
-        /* Zebra rows — very subtle */
-        tbody tr:nth-child(even) td {
-          background: #f5f5f5 !important;
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
+        /* ── Temperature: right 25% edge bar (7 steps: verycold=1/7 … veryhot=7/7) ── */
+        td.temp-verycold {
+          background: linear-gradient(to left, var(--print-bar-color) calc(25% * 1 / 7), var(--print-bar-transparent) calc(25% * 1 / 7)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.temp-cold {
+          background: linear-gradient(to left, var(--print-bar-color) calc(25% * 2 / 7), var(--print-bar-transparent) calc(25% * 2 / 7)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.temp-cool {
+          background: linear-gradient(to left, var(--print-bar-color) calc(25% * 3 / 7), var(--print-bar-transparent) calc(25% * 3 / 7)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.temp-mild {
+          background: linear-gradient(to left, var(--print-bar-color) calc(25% * 4 / 7), var(--print-bar-transparent) calc(25% * 4 / 7)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.temp-warm {
+          background: linear-gradient(to left, var(--print-bar-color) calc(25% * 5 / 7), var(--print-bar-transparent) calc(25% * 5 / 7)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.temp-hot {
+          background: linear-gradient(to left, var(--print-bar-color) calc(25% * 6 / 7), var(--print-bar-transparent) calc(25% * 6 / 7)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.temp-veryhot {
+          background: linear-gradient(to left, var(--print-bar-color) 25%, var(--print-bar-transparent) 25%) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
         }
 
-        /* ── Temperature colour bands ── */
-        td.temp-verycold { background: #c8d8f0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        td.temp-cold     { background: #dce8f4 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        td.temp-cool     { background: #d6eedd !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        td.temp-mild     { background: #c8e8c0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        td.temp-warm     { background: #f5e8a0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        td.temp-hot      { background: #f5c060 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        td.temp-veryhot  { background: #e8805a !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-
-        /* ── Wind colour bands ── */
-        td.wind-speed-calm     { background: #ffffff !important; }
-        td.wind-speed-light    { background: #e8f5e0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        td.wind-speed-moderate { background: #d0ebc8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        td.wind-speed-fresh    { background: #f8f0a0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        td.wind-speed-strong   { background: #f5c860 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        td.wind-speed-gale     { background: #e07040 !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-
-        /* ── Wind direction colour bands ── */
-        td.wind-dir-good { background: #d0ebc8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        td.wind-dir-mid  { background: #f8f0a0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-        td.wind-dir-bad  { background: #f5c8a0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-
-        /* ── Humidity colour bands ── */
-        td[class^="humidity-"] {
-          -webkit-print-color-adjust: exact;
-          print-color-adjust: exact;
+        /* ── Temperature Feels Like: right 25% edge bar (7 steps: verycold=1/7 … veryhot=7/7) ── */
+        td.temp-verycold.feels-like {
+          background: linear-gradient(to right, var(--print-bar-color) calc(25% * 1 / 7), var(--print-bar-transparent) calc(25% * 1 / 7)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
         }
-        td.humidity-0   { background: #fff !important; }
-        td.humidity-10  { background: #eef5fc !important; }
-        td.humidity-20  { background: #ddeefa !important; }
-        td.humidity-30  { background: #cce5f8 !important; }
-        td.humidity-40  { background: #b8d8f5 !important; }
-        td.humidity-50  { background: #9ec8f0 !important; }
-        td.humidity-60  { background: #82b5e8 !important; }
-        td.humidity-70  { background: #65a0dc !important; }
-        td.humidity-80  { background: #4888cc !important; color: #fff !important; }
-        td.humidity-90  { background: #2d70bb !important; color: #fff !important; }
-        td.humidity-100 { background: #1050a0 !important; color: #fff !important; }
+        td.temp-cold.feels-like {
+          background: linear-gradient(to right, var(--print-bar-color) calc(25% * 2 / 7), var(--print-bar-transparent) calc(25% * 2 / 7)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.temp-cool.feels-like {
+          background: linear-gradient(to right, var(--print-bar-color) calc(25% * 3 / 7), var(--print-bar-transparent) calc(25% * 3 / 7)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.temp-mild.feels-like {
+          background: linear-gradient(to right, var(--print-bar-color) calc(25% * 4 / 7), var(--print-bar-transparent) calc(25% * 4 / 7)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.temp-warm.feels-like {
+          background: linear-gradient(to right, var(--print-bar-color) calc(25% * 5 / 7), var(--print-bar-transparent) calc(25% * 5 / 7)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.temp-hot.feels-like {
+          background: linear-gradient(to right, var(--print-bar-color) calc(25% * 6 / 7), var(--print-bar-transparent) calc(25% * 6 / 7)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.temp-veryhot.feels-like {
+          background: linear-gradient(to right, var(--print-bar-color) 25%, var(--print-bar-transparent) 25%) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
 
-        /* ── Precipitation ── */
-        td.precip { background: #a8d8f8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        /* ── Wind speed: left 25% edge bar (6 steps: calm=1/6 … gale=6/6) ── */
+        td.wind-speed-calm {
+          background: linear-gradient(to right, var(--print-bar-color) calc(25% * 1 / 6), var(--print-bar-transparent) calc(25% * 1 / 6)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.wind-speed-light {
+          background: linear-gradient(to right, var(--print-bar-color) calc(25% * 2 / 6), var(--print-bar-transparent) calc(25% * 2 / 6)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.wind-speed-moderate {
+          background: linear-gradient(to right, var(--print-bar-color) calc(25% * 3 / 6), var(--print-bar-transparent) calc(25% * 3 / 6)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.wind-speed-fresh {
+          background: linear-gradient(to right, var(--print-bar-color) calc(25% * 4 / 6), var(--print-bar-transparent) calc(25% * 4 / 6)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.wind-speed-strong {
+          background: linear-gradient(to right, var(--print-bar-color) calc(25% * 5 / 6), var(--print-bar-transparent) calc(25% * 5 / 6)) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+        td.wind-speed-gale {
+          background: linear-gradient(to right, var(--print-bar-color) 25%, var(--print-bar-transparent) 25%) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
+
+        /* ── Wind direction: no special styling ── */
+        td.wind-dir-good, td.wind-dir-mid, td.wind-dir-bad {
+          background: none !important;
+          color: inherit !important;
+        }
+
+       /* ── Humidity: left 25% edge bar (11 steps: 0=1/11 … 100=11/11) ── */
+        td.humidity-0   { background: linear-gradient(to right, var(--print-bar-color) calc(25% * 1 / 11),  var(--print-bar-transparent) calc(25% * 1 / 11))  !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.humidity-10  { background: linear-gradient(to right, var(--print-bar-color) calc(25% * 2 / 11),  var(--print-bar-transparent) calc(25% * 2 / 11))  !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.humidity-20  { background: linear-gradient(to right, var(--print-bar-color) calc(25% * 3 / 11),  var(--print-bar-transparent) calc(25% * 3 / 11))  !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.humidity-30  { background: linear-gradient(to right, var(--print-bar-color) calc(25% * 4 / 11),  var(--print-bar-transparent) calc(25% * 4 / 11))  !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.humidity-40  { background: linear-gradient(to right, var(--print-bar-color) calc(25% * 5 / 11),  var(--print-bar-transparent) calc(25% * 5 / 11))  !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.humidity-50  { background: linear-gradient(to right, var(--print-bar-color) calc(25% * 6 / 11),  var(--print-bar-transparent) calc(25% * 6 / 11))  !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.humidity-60  { background: linear-gradient(to right, var(--print-bar-color) calc(25% * 7 / 11),  var(--print-bar-transparent) calc(25% * 7 / 11))  !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.humidity-70  { background: linear-gradient(to right, var(--print-bar-color) calc(25% * 8 / 11),  var(--print-bar-transparent) calc(25% * 8 / 11))  !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.humidity-80  { background: linear-gradient(to right, var(--print-bar-color) calc(25% * 9 / 11),  var(--print-bar-transparent) calc(25% * 9 / 11))  !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.humidity-90  { background: linear-gradient(to right, var(--print-bar-color) calc(25% * 10 / 11), var(--print-bar-transparent) calc(25% * 10 / 11)) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.humidity-100 { background: linear-gradient(to right, var(--print-bar-color) 25%,                 var(--print-bar-transparent) 25%)                 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+        /* ── Precipitation: right 25% edge bar ── */
+        td.precip {
+          background: linear-gradient(to left, var(--print-bar-color) 25%, var(--print-bar-transparent) 25%) !important;
+          -webkit-print-color-adjust: exact; print-color-adjust: exact;
+        }
 
         /* ── Legend block ── */
         body::after {
           display: block;
-          content: "TEMP  [C°/F°]   WIND  [knots]   DIR  [degrees]   P  [mm/hr]   H  [%RH]   //   Shading: blue=humid · green=cool · amber=warm · orange=strong wind · red=hot/gale";
+          content: "TEMP  [C°/F°]   FEELS LIKE  [C°/F°]   WIND speed  [knots]   DIR wind direction [compass]   P precipitation [mm/hr]   H humidity [%RH]";
           font-family: "Courier New", Courier, monospace;
           font-size: 5.5pt;
           letter-spacing: 0.03em;
@@ -510,6 +578,7 @@ cat << 'HTML'
           border-top: 0.5pt solid #000;
           padding-top: 3pt;
           margin-top: 4pt;
+          text-align: center;
         }
 
         /* ── Don't break inside a run of rows ── */
@@ -587,7 +656,7 @@ cat << HTML
             <th>Temp (&deg;C / &deg;F)</th>
             <th>Feels Like (&deg;C / &deg;F)</th>
             <th>Wind (kts)</th>
-            <th>Wind Dir (&deg;)</th>
+            <th>Wind Dir</th>
             <th>P (mm)</th>
             <th>H (%)</th>
           </tr>
