@@ -53,8 +53,8 @@ echo "$data" | jq '{
 }' > weather.json
 
 # Get water quality data for yesterday
-YESTERDAY=$(date -v-1d +%m/%d)
-YESTERDAY_YEAR=$(date -v-1d +%Y)
+YESTERDAY=$(date -d "yesterday" +%m/%d)
+YESTERDAY_YEAR=$(date -d "yesterday" +%Y)
 YESTERDAY_URL_ENCODED=$(echo "$YESTERDAY" | sed 's|/|%2F|g')
 
 # Fetch CSV for Pasco (PAQW), Priest Rapids (PRQW), and McNary (MCQW)
