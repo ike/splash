@@ -345,6 +345,188 @@ cat << 'HTML'
       .overflow-auto { overflow-x: auto; }
       #kagi-search { margin-bottom: 1em; }
       #kagi-search input[type="text"] { width: 100%; padding: 0.5em 0.75em; font-size: 1em; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+
+      @media print {
+
+        /* ── Page setup ── */
+        @page {
+          size: letter landscape;
+          margin: 0.45in 0.4in 0.4in;
+        }
+
+        /* ── Kill screen chrome ── */
+        body {
+          font-family: "Courier New", Courier, monospace;
+          font-size: 7pt;
+          line-height: 1.25;
+          color: #000;
+          background: #fff;
+          margin: 0;
+          padding: 0;
+        }
+
+        /* ── Hide non-data elements ── */
+        #kagi-search,
+        .webcam-img,
+        script,
+        .callout-col {
+          display: none !important;
+        }
+
+        /* ── Top layout: collapse to header bar ── */
+        .top-layout {
+          display: block;
+          border-bottom: 2pt solid #000;
+          padding-bottom: 4pt;
+          margin-bottom: 4pt;
+        }
+
+        /* ── Station header (injected via the h2) ── */
+        h2.time {
+          font-family: "Courier New", Courier, monospace;
+          font-size: 10pt;
+          font-weight: bold;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          border-bottom: 0.5pt solid #000;
+          padding-bottom: 2pt;
+          margin: 0 0 4pt 0;
+          text-align: center;
+        }
+
+        h2.time::before {
+          content: "METEOROLOGICAL FORECAST NELSON ISLAND  //  ";
+        }
+
+        /* ── Table: full-width, dense, old-school ── */
+        .overflow-auto {
+          overflow: visible;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          border-spacing: 0;
+          table-layout: fixed;
+          font-family: "Courier New", Courier, monospace;
+          font-size: 6.5pt;
+          page-break-inside: avoid;
+        }
+
+        /* Column widths */
+        table colgroup,
+        table col { display: none; }
+
+        th:nth-child(1), td:nth-child(1) { width: 14%; }
+        th:nth-child(2), td:nth-child(2) { width: 13%; }
+        th:nth-child(3), td:nth-child(3) { width: 13%; }
+        th:nth-child(4), td:nth-child(4) { width: 10%; }
+        th:nth-child(5), td:nth-child(5) { width: 8%; }
+        th:nth-child(6), td:nth-child(6) { width: 8%; }
+        th:nth-child(7), td:nth-child(7) { width: 8%; }
+
+        th, td {
+          border: 0.4pt solid #555;
+          padding: 1.2pt 3pt;
+          text-align: center;
+          vertical-align: middle;
+          white-space: nowrap;
+        }
+
+        thead th {
+          background: #000 !important;
+          color: #fff !important;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+          font-weight: bold;
+          font-size: 6pt;
+          letter-spacing: 0.04em;
+          text-transform: uppercase;
+          border-color: #000;
+        }
+
+        /* Day separator: bold left border on first row of each day */
+        tr:has(td:first-child:matches(*, [data-day])) td:first-child {
+          font-weight: bold;
+        }
+
+        /* Zebra rows — very subtle */
+        tbody tr:nth-child(even) td {
+          background: #f5f5f5 !important;
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+
+        /* ── Temperature colour bands ── */
+        td.temp-verycold { background: #c8d8f0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.temp-cold     { background: #dce8f4 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.temp-cool     { background: #d6eedd !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.temp-mild     { background: #c8e8c0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.temp-warm     { background: #f5e8a0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.temp-hot      { background: #f5c060 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.temp-veryhot  { background: #e8805a !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+        /* ── Wind colour bands ── */
+        td.wind-speed-calm     { background: #ffffff !important; }
+        td.wind-speed-light    { background: #e8f5e0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.wind-speed-moderate { background: #d0ebc8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.wind-speed-fresh    { background: #f8f0a0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.wind-speed-strong   { background: #f5c860 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.wind-speed-gale     { background: #e07040 !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+        /* ── Wind direction colour bands ── */
+        td.wind-dir-good { background: #d0ebc8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.wind-dir-mid  { background: #f8f0a0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        td.wind-dir-bad  { background: #f5c8a0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+        /* ── Humidity colour bands ── */
+        td[class^="humidity-"] {
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        td.humidity-0   { background: #fff !important; }
+        td.humidity-10  { background: #eef5fc !important; }
+        td.humidity-20  { background: #ddeefa !important; }
+        td.humidity-30  { background: #cce5f8 !important; }
+        td.humidity-40  { background: #b8d8f5 !important; }
+        td.humidity-50  { background: #9ec8f0 !important; }
+        td.humidity-60  { background: #82b5e8 !important; }
+        td.humidity-70  { background: #65a0dc !important; }
+        td.humidity-80  { background: #4888cc !important; color: #fff !important; }
+        td.humidity-90  { background: #2d70bb !important; color: #fff !important; }
+        td.humidity-100 { background: #1050a0 !important; color: #fff !important; }
+
+        /* ── Precipitation ── */
+        td.precip { background: #a8d8f8 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+        /* ── Legend block ── */
+        body::after {
+          display: block;
+          content: "TEMP  [C°/F°]   WIND  [knots]   DIR  [degrees]   P  [mm/hr]   H  [%RH]   //   Shading: blue=humid · green=cool · amber=warm · orange=strong wind · red=hot/gale";
+          font-family: "Courier New", Courier, monospace;
+          font-size: 5.5pt;
+          letter-spacing: 0.03em;
+          color: #444;
+          border-top: 0.5pt solid #000;
+          padding-top: 3pt;
+          margin-top: 4pt;
+        }
+
+        /* ── Don't break inside a run of rows ── */
+        tr { page-break-inside: avoid; }
+
+        /* force rows to pack tight — override any JS-set heights */
+        tr, td, th { height: auto !important; }
+        tbody tr:nth-child(n-7) {
+            display: none;
+        }
+        tbody tr:nth-child(n+50) {
+            display: none !important;
+        }
+        tbody tr:nth-child(n+8) {
+            display: table-row;
+        }
+      }
     </style>
     <link rel="manifest" href="manifest.json">
     <script>
