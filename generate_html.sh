@@ -428,6 +428,40 @@ ${HOURLY_ROWS}
         const options = { hour: '2-digit', minute: '2-digit', timeZone: 'America/Los_Angeles' };
         timeElem.textContent = now.toLocaleString('en-US', options);
       }
+      document.addEventListener("DOMContentLoaded", async () => {
+        if (!("serviceWorker" in navigator)) return;
+
+        try {
+          const registration = await navigator.serviceWorker.register("/sw.js", {
+            scope: "/",
+          });
+
+          console.log("SW state:", registration.active?.state);
+          console.log("SW waiting:", registration.waiting);
+          console.log("SW installing:", registration.installing);
+
+          console.log("Calling update...");
+          registration.update().then(() => {
+            console.log("update() resolved");
+            console.log("SW waiting after update:", registration.waiting);
+            console.log("SW installing after update:", registration.installing);
+          });
+
+          registration.addEventListener("updatefound", () => {
+            console.log("updatefound fired!", registration.installing?.state);
+            const worker = registration.installing;
+            worker.addEventListener("statechange", () => {
+              console.log("worker statechange:", worker.state);
+              if (worker.state === "installed") {
+                worker.postMessage({ type: "SKIP_WAITING" });
+              }
+            });
+          });
+
+        } catch (err) {
+          console.log("SW registration failed", err);
+        }
+      });
     </script>
   </body>
 </html>

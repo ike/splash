@@ -33,55 +33,50 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS))
   );
-  self.skipWaiting();
 });
 
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
+    caches.keys()
+      .then(keys => Promise.all(
         keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
-      )
-    )
+      ))
+      .then(() => self.clients.claim())
+      .then(() => self.clients.matchAll({ type: 'window' }))
+      .then(clients => {
+        clients.forEach(client => client.navigate(client.url));
+      })
   );
-  self.clients.claim();
 });
 
 self.addEventListener('fetch', event => {
-  // Stale-while-revalidate: serve from cache immediately, update cache in background
-  event.respondWith(
-    caches.match(event.request).then(cached => {
-      const networkUpdate = caches.open(CACHE_NAME).then(async cache => {
-        try {
-          const response = await fetch(event.request);
-          if (response && response.status === 200 && response.type !== 'opaque') {
-            // Check if this response differs from what's cached
-            const existing = await cache.match(event.request);
-            if (!existing) {
-              cache.put(event.request, response.clone());
-            } else {
-              const [oldBody, newBody] = await Promise.all([
-                existing.clone().text(),
-                response.clone().text()
-              ]);
-              if (oldBody !== newBody) {
-                cache.put(event.request, response.clone());
-                // Notify clients that content changed so they can reload
-                const clients = await self.clients.matchAll();
-                clients.forEach(client => client.postMessage({ type: 'CACHE_UPDATED', url: event.request.url }));
-              }
-            }
-          }
-          return response;
-        } catch {
-          return null;
-        }
-      });
+  const url = new URL(event.request.url);
+  const isHtml = url.pathname === '/' || url.pathname.endsWith('.html');
 
-      // Serve from cache immediately; fall back to network if not cached
-      return cached || networkUpdate;
-    })
+  if (isHtml) {
+    event.respondWith(
+      caches.match(event.request).then(cached => {
+        if (cached) return cached;
+        return fetch(event.request).then(response =>
+          caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, response.clone());
+            return response;
+          })
+        );
+      })
+    );
+    return;
+  }
+
+  event.respondWith(
+    caches.match(event.request).then(cached => cached || fetch(event.request))
   );
+});
+
+self.addEventListener('message', event => {
+  if (event.data?.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
 });
 SWEOF
 
