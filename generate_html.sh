@@ -434,7 +434,6 @@ ${HOURLY_ROWS}
 HTML
 } > "$OUTPUT_HTML"
 
-./update_service_worker.sh "$OUTPUT_HTML" sw.js
-
+./update_service_worker.sh "$OUTPUT_HTML"
 
 echo "Generated: $OUTPUT_HTML"
