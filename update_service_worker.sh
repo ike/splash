@@ -38,17 +38,36 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
+  // Stale-while-revalidate: serve from cache immediately, update cache in background
   event.respondWith(
-    caches.match(event.request).then(cached => {
-      if (cached) return cached;
-      return fetch(event.request).then(response => {
-        if (!response || response.status !== 200 || response.type === 'opaque') {
-          return response;
+    caches.open(CACHE_NAME).then(async cache => {
+      const cached = await cache.match(event.request);
+
+      const networkFetch = fetch(event.request).then(response => {
+        if (response && response.status === 200 && response.type !== 'opaque') {
+          // Only update cache if the response has actually changed
+          cache.match(event.request).then(existing => {
+            if (!existing) {
+              cache.put(event.request, response.clone());
+            } else {
+              // Compare via cloned text to detect changes
+              Promise.all([existing.clone().text(), response.clone().text()]).then(([oldBody, newBody]) => {
+                if (oldBody !== newBody) {
+                  cache.put(event.request, response.clone());
+                  // Notify all clients that fresh content is available
+                  self.clients.matchAll().then(clients =>
+                    clients.forEach(client => client.postMessage({ type: 'CACHE_UPDATED', url: event.request.url }))
+                  );
+                }
+              });
+            }
+          });
         }
-        const clone = response.clone();
-        caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
         return response;
-      });
+      }).catch(() => null);
+
+      // Return cached response immediately if available, otherwise wait for network
+      return cached || networkFetch;
     })
   );
 });
