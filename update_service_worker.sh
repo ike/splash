@@ -51,9 +51,9 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
-  const isHtml = url.pathname === '/' || url.pathname.endsWith('.html');
+  const isCacheBusted = url.pathname === '/' || url.pathname.endsWith('.html') || url.pathname.endsWith('.json') || url.pathname.endsWith('.jpg');
 
-  if (isHtml) {
+  if (isCacheBusted) {
     event.respondWith(
       caches.match(event.request).then(cached => {
         if (cached) return cached;
