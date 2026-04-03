@@ -1,8 +1,9 @@
 #! /bin/bash
 
 SPLASH_HTML_FILE_PATH="${1:-./index.html}"
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
-./get_webcam.sh "$SPLASH_HTML_FILE_PATH"
+$SCRIPT_DIR/get_webcam.sh "$SPLASH_HTML_FILE_PATH"
 
 # curl -X 'GET' \
 #   'https://my.meteoblue.com/packages/basic-day?apikey=aL4b8GwhENBgiSTl&lat=46.309&lon=-119.254&asl=124&format=json' \
@@ -11,7 +12,7 @@ SPLASH_HTML_FILE_PATH="${1:-./index.html}"
 # curl -X 'GET' \
 #   'https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=aL4b8GwhENBgiSTl&lat=46.309&lon=-119.254&asl=124&format=json' | \
 data=$(curl -s 'https://my.meteoblue.com/packages/basic-1h?apikey=aL4b8GwhENBgiSTl&lat=46.309&lon=-119.254&asl=124&format=json')
-echo $data | jq '.' > raw_weather.json
+echo $data | jq '.' > $SCRIPT_DIR/raw_weather.json
 echo "$data" | jq '{
   today: {
     wind: {
@@ -50,11 +51,11 @@ echo "$data" | jq '{
       "hourly data not available in this API response (add basic-1h package)"
     end
   )
-}' > weather.json
+}' > $SCRIPT_DIR/weather.json
 
 # Get water quality data for yesterday
-YESTERDAY=$(date -d "yesterday" +%m/%d)
-YESTERDAY_YEAR=$(date -d "yesterday" +%Y)
+YESTERDAY=$(date -v-1d +%m/%d 2>/dev/null || date -d "yesterday" +%m/%d)
+YESTERDAY_YEAR=$(date -v-1d +%Y 2>/dev/null || date -d "yesterday" +%Y)
 YESTERDAY_URL_ENCODED=$(echo "$YESTERDAY" | sed 's|/|%2F|g')
 
 # Fetch CSV for Pasco (PAQW), Priest Rapids (PRQW), and McNary (MCQW)
@@ -64,6 +65,7 @@ fetch_water_temp() {
   url="https://www.cbr.washington.edu/dart/cs/php/rpt/wqm_hourly.php?sc=1&outputFormat=csv&year=${YESTERDAY_YEAR}&proj=${proj}&startdate=${YESTERDAY_URL_ENCODED}&days=1&keys="
   csv=$(curl -s "$url" | tail -n +2) # Skip header
   # Find the row matching yesterday's date, get temperature (col 3) and oxygen (col 4)
+  echo "$csv" > $SCRIPT_DIR/${proj}_raw.csv
   echo "$csv" | head -1
 }
 pasco_row=$(fetch_water_temp "PAQW")
@@ -89,7 +91,7 @@ jq -n \
   --argjson po "${pasco_oxygen:-null}" \
   '{
     pasco: { temperature: $pt, oxygen: $po },
-  }' > water.json
+  }' > $SCRIPT_DIR/water.json
  # --argjson prt "${priest_temp:-null}" \
  # --argjson pro "${priest_oxygen:-null}" \
  # --argjson mt "${mcnary_temp:-null}" \
@@ -103,4 +105,4 @@ if [ "$SPLASH_DIR" != "." ]; then
   cp webcam.jpg "$SPLASH_DIR/webcam.jpg"
 fi
 
-./generate_html.sh weather.json water.json $SPLASH_HTML_FILE_PATH
+$SCRIPT_DIR/generate_html.sh weather.json water.json $SPLASH_HTML_FILE_PATH

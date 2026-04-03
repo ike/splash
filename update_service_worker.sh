@@ -3,8 +3,9 @@
 OUTPUT_HTML="${1:-index.html}"
 SW_JS="${2:-sw.js}"
 OUTPUT_DIR="$(dirname "$OUTPUT_HTML")"
-WEATHER_JSON="./weather.json"
-WATER_JSON="./water.json"
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
+WEATHER_JSON="$SCRIPT_DIR/weather.json"
+WATER_JSON="$SCRIPT_DIR/water.json"
 SW_JS_PATH="$OUTPUT_DIR/$(basename "$SW_JS")"
 MANIFEST_JSON="$OUTPUT_DIR/manifest.json"
 

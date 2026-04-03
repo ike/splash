@@ -6,6 +6,7 @@ set -euo pipefail
 WEATHER_JSON="${1:-weather.json}"
 WATER_JSON="${2:-water.json}"
 OUTPUT_HTML="${3:-index.html}"
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
 if ! command -v jq &>/dev/null; then
   echo "Error: jq is required." >&2; exit 1
@@ -719,6 +720,6 @@ ${HOURLY_ROWS}
 HTML
 } > "$OUTPUT_HTML"
 
-./update_service_worker.sh "$OUTPUT_HTML"
+$SCRIPT_DIR/update_service_worker.sh "$OUTPUT_HTML"
 
 echo "Generated: $OUTPUT_HTML"

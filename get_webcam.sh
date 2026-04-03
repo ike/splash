@@ -2,6 +2,7 @@
 
 OUTPUT_HTML="${1:-index.html}"
 OUTPUT_DIR="$(dirname "$OUTPUT_HTML")"
+SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
 # img_url=$(curl -X 'GET' \
 #  'https://api.windy.com/webcams/api/v3/webcams/1756933961?lang=en&include=images,urls' \
@@ -11,9 +12,9 @@ OUTPUT_DIR="$(dirname "$OUTPUT_HTML")"
 img_url="https://imgproxy.windy.com/_/preview/plain/current/1756933961/original.jpg"
 
 echo "Downloading webcam image from: $img_url"
-curl $img_url -o webcam.jpg
+curl $img_url -o $SCRIPT_DIR/webcam.jpg
 
-cp webcam.jpg "$OUTPUT_DIR/webcam.jpg"
+cp $SCRIPT_DIR/webcam.jpg "$OUTPUT_DIR/webcam.jpg"
 echo "Webcam image saved to: $OUTPUT_DIR/webcam.jpg"
 
-./update_service_worker.sh $OUTPUT_HTML
+$SCRIPT_DIR/update_service_worker.sh $OUTPUT_HTML
