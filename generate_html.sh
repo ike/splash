@@ -787,11 +787,13 @@ ${HOURLY_ROWS}
           const timeCell = row.querySelector('td:first-child');
           if (timeCell) {
             const timeText = timeCell.textContent;
-            const hourMatch = timeText.match(/(\d{1,2}):(\d{2})/);
-            if (hourMatch) {
-              const rowHour = parseInt(hourMatch[1], 10);
-              if (rowHour === currentHour) {
-                row.classList.add('current-hour');
+            if (timeText.startsWith('Today, ')) {
+              const hourMatch = timeText.match(/Today, (\d{1,2}):/);
+              if (hourMatch) {
+                const rowHour = parseInt(hourMatch[1], 10);
+                if (rowHour === currentHour) {
+                  row.classList.add('current-hour');
+                }
               }
             }
           }
