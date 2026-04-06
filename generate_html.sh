@@ -210,9 +210,47 @@ GOOD_SAIL_TODAY=$(jq --arg today "$TODAY" '
 SAIL_RANGES_TODAY=$(build_range_labels "$GOOD_SAIL_TODAY")
 SAIL_COUNT=$(echo "$GOOD_SAIL_TODAY" | jq 'length')
 
-if [[ "$SAIL_COUNT" -gt 0 ]]; then
-  SAIL_COLOR="#4caf50"
-  SAIL_STATUS="Good hours:<br>${SAIL_RANGES_TODAY}"
+# Parse water temp for sailing assessment
+WATER_TEMP_NUM=""
+if [[ "$PASCO_WATER_TEMP" != "n/a" && "$PASCO_WATER_TEMP" != "null" && -n "$PASCO_WATER_TEMP" ]]; then
+  WATER_TEMP_NUM="$PASCO_WATER_TEMP"
+fi
+
+WATER_SAIL_OK=true
+WATER_SAIL_WARNING=false
+WATER_SAIL_MSG=""
+if [[ -n "$WATER_TEMP_NUM" ]]; then
+  WATER_CHECK=$(echo "$WATER_TEMP_NUM" | awk '{
+    if ($1 < 45) print "frigid"
+    else if ($1 < 55) print "cold"
+    else print "ok"
+  }')
+  if [[ "$WATER_CHECK" == "frigid" ]]; then
+    WATER_SAIL_OK=false
+    WATER_SAIL_MSG="water is frigid"
+  elif [[ "$WATER_CHECK" == "cold" ]]; then
+    WATER_SAIL_WARNING=true
+    WATER_SAIL_MSG="water is cold"
+  fi
+fi
+
+if [[ "$SAIL_COUNT" -gt 0 ]] && $WATER_SAIL_OK; then
+  if $WATER_SAIL_WARNING; then
+    SAIL_COLOR="#ff9800"
+    SAIL_STATUS="Good hours: ${SAIL_RANGES_TODAY}<br>Warning: ${WATER_SAIL_MSG}"
+  else
+    SAIL_COLOR="#4caf50"
+    SAIL_STATUS="Good hours: ${SAIL_RANGES_TODAY}"
+  fi
+elif [[ "$SAIL_COUNT" -gt 0 ]] && ! $WATER_SAIL_OK; then
+  SAIL_COLOR="#e05020"
+  SAIL_STATUS="Good wind hours:<br>${SAIL_RANGES_TODAY}<br>But ${WATER_SAIL_MSG}"
+elif [[ "$SAIL_COUNT" -eq 0 ]] && ! $WATER_SAIL_OK; then
+  SAIL_COLOR="#e05020"
+  SAIL_STATUS="No good sailing today. Also, ${WATER_SAIL_MSG}."
+elif [[ "$SAIL_COUNT" -eq 0 ]] && $WATER_SAIL_WARNING; then
+  SAIL_COLOR="#e05020"
+  SAIL_STATUS="No good sailing today. Warning: ${WATER_SAIL_MSG}."
 else
   SAIL_COLOR="#e05020"
   SAIL_STATUS="No good sailing today."
@@ -240,7 +278,7 @@ if [[ -n "$FIRST_FUTURE_DATE" ]]; then
   else
    FUTURE_DAY_LABEL=$(date -j -f "%Y-%m-%d" "$FIRST_FUTURE_DATE" +"%A" 2>/dev/null || date -d "$FIRST_FUTURE_DATE" +"%A")
   fi
-  NEXT_WINDOW_HTML='<div class="next-window">Next: '"${FUTURE_DAY_LABEL}"'<br>'"${FUTURE_RANGES}"'</div>'
+  NEXT_WINDOW_HTML='<div class="next-window">Next: '"${FUTURE_DAY_LABEL}"' '"${FUTURE_RANGES}"'</div>'
 fi
 
 # ── hourly table rows ──────────────────────────────────────────────────────────
