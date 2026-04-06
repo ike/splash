@@ -441,8 +441,8 @@ cat << 'HTML'
       .callout-card p { margin: 0; font-size: 0.9em; }
       .next-window { margin-top: 0.4em; font-size: 0.8em; color: #555; border-top: 1px solid #ddd; padding-top: 0.4em; }
       .overflow-auto { overflow-x: auto; }
-      #kagi-search { margin-bottom: 1em; }
-      #kagi-search input[type="text"] { width: 100%; padding: 0.5em 0.75em; font-size: 1em; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+      tr.current-hour td { position: relative }
+      tr.current-hour td:after { content: ''; position: absolute; width: 100%; height: 100%; background: rgb(0 139 15 / 25%); z-index: 200; top: 0; right: 0; }
 
       @media print {
         /* ── Print bar chart CSS variables ── */
@@ -779,6 +779,24 @@ ${HOURLY_ROWS}
         timeElem.textContent = now.toLocaleString('en-US', options);
       }
       document.addEventListener("DOMContentLoaded", async () => {
+        // Add current hour class to the correct tr
+        const now = new Date();
+        const currentHour = now.getHours();
+        const rows = document.querySelectorAll('tbody tr');
+        rows.forEach(row => {
+          const timeCell = row.querySelector('td:first-child');
+          if (timeCell) {
+            const timeText = timeCell.textContent;
+            const hourMatch = timeText.match(/(\d{1,2}):(\d{2})/);
+            if (hourMatch) {
+              const rowHour = parseInt(hourMatch[1], 10);
+              if (rowHour === currentHour) {
+                row.classList.add('current-hour');
+              }
+            }
+          }
+        });
+
         if (!("serviceWorker" in navigator)) return;
 
         try {
