@@ -283,53 +283,95 @@ fi
 
 # ── hourly table rows ──────────────────────────────────────────────────────────
 
-HOURLY_ROWS=""
-while IFS= read -r row; do
-  TIME=$(echo "$row" | jq -r '.time')
-  ACTUAL_C=$(echo "$row" | jq -r '.temperature.actual_c // "null"')
-  ACTUAL_F=$(echo "$row" | jq -r '.temperature.actual_f // "null"')
-  FEELS_C=$(echo "$row"  | jq -r '.temperature.feels_like_c // "null"')
-  FEELS_F=$(echo "$row"  | jq -r '.temperature.feels_like_f // "null"')
-  SPEED_MS=$(echo "$row" | jq -r '.wind.speed_ms // "null"')
-  DIR=$(echo "$row"      | jq -r '.wind.direction_degrees // "null"')
-  PRECIP=$(echo "$row"   | jq -r '.precipitation_mm // "null"')
-  HUMIDITY=$(echo "$row" | jq -r '.relative_humidity // "null"')
+HOURLY_ROWS=$(jq -r --arg today "$TODAY" --arg tomorrow "$TOMORROW" '
+  .hourly[] |
+  .time as $time |
+  (.time | gsub(" "; "T")) as $iso |
+  ($iso | split("T")[0]) as $date_part |
+  ($iso | split("T")[1][0:5]) as $time_part |
+  (if $date_part == $today then "Today"
+   elif $date_part == $tomorrow then "Tomorrow"
+   else $date_part
+   end) as $label |
+  "\($label), \($time_part)" as $time_label |
 
-  SPEED_KTS=$(ms_to_kts "$SPEED_MS")
-  TIME_LABEL=$(format_time "$TIME")
+  (.temperature.actual_c // "null" | tostring) as $actual_c |
+  (.temperature.actual_f // "null" | tostring) as $actual_f |
+  (.temperature.feels_like_c // "null" | tostring) as $feels_c |
+  (.temperature.feels_like_f // "null" | tostring) as $feels_f |
+  (.wind.speed_ms // null) as $speed_ms |
+  (if $speed_ms == null then "null" else ($speed_ms * 1.94384 | . * 10 | round | . / 10 | tostring) end) as $speed_kts |
+  (.wind.direction_degrees // null) as $dir |
+  (.precipitation_mm // "null" | tostring) as $precip |
+  (.relative_humidity // "null" | tostring) as $humidity |
 
-  # Convert wind direction degrees to an arrow character
-  if [[ -z "$DIR" || "$DIR" == "null" ]]; then
-    DIR_ARROW="—"
-  else
-    DIR_ARROW=$(echo "$DIR" | awk '{
-      d = ($1 % 360 + 360) % 360
-      # Arrow points in the direction wind is going (from opposite)
-      # We rotate by adding 180 to get "coming from" -> "going to"
-      idx = int((d + 22.5) / 45) % 8
-      arrows[0] = "&#x2193;"
-      arrows[1] = "&#x2199;"
-      arrows[2] = "&#x2190;"
-      arrows[3] = "&#x2196;"
-      arrows[4] = "&#x2191;"
-      arrows[5] = "&#x2197;"
-      arrows[6] = "&#x2192;"
-      arrows[7] = "&#x2198;"
-      print arrows[idx]
-    }')
-  fi
+  # temp class
+  (if $actual_c == "null" then ""
+   elif ($actual_c | tonumber) < 0   then "temp-verycold"
+   elif ($actual_c | tonumber) < 10  then "temp-cold"
+   elif ($actual_c | tonumber) < 18  then "temp-cool"
+   elif ($actual_c | tonumber) < 24  then "temp-mild"
+   elif ($actual_c | tonumber) < 30  then "temp-warm"
+   elif ($actual_c | tonumber) < 35  then "temp-hot"
+   else "temp-veryhot"
+   end) as $temp_class |
 
-  HOURLY_ROWS="${HOURLY_ROWS}  <tr>
-    <td>$(fmt "$TIME_LABEL")</td>
-    <td class=\"$(get_temp_class "$ACTUAL_C")\">$(fmt "$ACTUAL_C") / $(fmt "$ACTUAL_F")</td>
-    <td class=\"$(get_temp_class "$FEELS_C") feels-like\">$(fmt "$FEELS_C") / $(fmt "$FEELS_F")</td>
-    <td class=\"$(get_wind_speed_class "$SPEED_KTS")\">$(fmt "$SPEED_KTS")</td>
-    <td class=\"$(get_wind_dir_class "$DIR")\">$(fmt "$DIR_ARROW")</td>
-    <td class=\"$(get_precip_class "$PRECIP")\">$(fmt "$PRECIP")</td>
-    <td class=\"$(get_humidity_class "$HUMIDITY")\">$(fmt "$HUMIDITY")</td>
-  </tr>
-"
-done < <(jq -c '.hourly[]' "$WEATHER_JSON")
+  (if $feels_c == "null" then ""
+   elif ($feels_c | tonumber) < 0   then "temp-verycold"
+   elif ($feels_c | tonumber) < 10  then "temp-cold"
+   elif ($feels_c | tonumber) < 18  then "temp-cool"
+   elif ($feels_c | tonumber) < 24  then "temp-mild"
+   elif ($feels_c | tonumber) < 30  then "temp-warm"
+   elif ($feels_c | tonumber) < 35  then "temp-hot"
+   else "temp-veryhot"
+   end) as $feels_class |
+
+  # wind speed class
+  (if $speed_kts == "null" then ""
+   elif ($speed_kts | tonumber) < 6   then "wind-speed-calm"
+   elif ($speed_kts | tonumber) < 12  then "wind-speed-light"
+   elif ($speed_kts | tonumber) < 17  then "wind-speed-moderate"
+   elif ($speed_kts | tonumber) < 23  then "wind-speed-fresh"
+   elif ($speed_kts | tonumber) < 31  then "wind-speed-strong"
+   else "wind-speed-gale"
+   end) as $wind_speed_class |
+
+  # wind dir class
+  (if $dir == null then ""
+   elif ($dir >= 135 and $dir <= 225) then "wind-dir-good"
+   elif ($dir >= 90  and $dir <= 270) then "wind-dir-mid"
+   else "wind-dir-bad"
+   end) as $wind_dir_class |
+
+  # wind dir arrow
+  (if $dir == null then "&#x2014;"
+   else
+     ((($dir % 360 + 360) % 360 + 22.5) / 45 | floor | . % 8) as $idx |
+     ["&#x2193;","&#x2199;","&#x2190;","&#x2196;","&#x2191;","&#x2197;","&#x2192;","&#x2198;"][$idx]
+   end) as $dir_arrow |
+
+  # precip class
+  (if $precip == "null" or $precip == "0" or $precip == "0.0" then "" else "precip" end) as $precip_class |
+
+  # humidity class
+  (if $humidity == "null" then ""
+   else
+     (($humidity | tonumber) + 5) / 10 | floor | . * 10 |
+     (if . > 100 then 100 elif . < 0 then 0 else . end) |
+     "humidity-\(.)"
+   end) as $humidity_class |
+
+  # fmt helper: null/"null" -> em dash
+  (if $actual_c  == "null" then "&#x2014;" else $actual_c  end) as $d_actual_c  |
+  (if $actual_f  == "null" then "&#x2014;" else $actual_f  end) as $d_actual_f  |
+  (if $feels_c   == "null" then "&#x2014;" else $feels_c   end) as $d_feels_c   |
+  (if $feels_f   == "null" then "&#x2014;" else $feels_f   end) as $d_feels_f   |
+  (if $speed_kts == "null" then "&#x2014;" else $speed_kts end) as $d_speed_kts |
+  (if $precip    == "null" then "&#x2014;" else $precip    end) as $d_precip    |
+  (if $humidity  == "null" then "&#x2014;" else $humidity  end) as $d_humidity  |
+
+  "  <tr>\n    <td>\($time_label)</td>\n    <td class=\"\($temp_class)\">\($d_actual_c) / \($d_actual_f)</td>\n    <td class=\"\($feels_class) feels-like\">\($d_feels_c) / \($d_feels_f)</td>\n    <td class=\"\($wind_speed_class)\">\($d_speed_kts)</td>\n    <td class=\"\($wind_dir_class)\">\($dir_arrow)</td>\n    <td class=\"\($precip_class)\">\($d_precip)</td>\n    <td class=\"\($humidity_class)\">\($d_humidity)</td>\n  </tr>"
+' "$WEATHER_JSON")
 
 # ── write output ───────────────────────────────────────────────────────────────
 

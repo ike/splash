@@ -3,7 +3,7 @@
 SPLASH_HTML_FILE_PATH="${1:-./index.html}"
 SCRIPT_DIR="$(dirname "$(realpath "$0")")"
 
-$SCRIPT_DIR/get_webcam.sh "$SPLASH_HTML_FILE_PATH"
+$SCRIPT_DIR/get_webcam.sh "$SPLASH_HTML_FILE_PATH" --no-update-sw
 
 # curl -X 'GET' \
 #   'https://my.meteoblue.com/packages/basic-day?apikey=aL4b8GwhENBgiSTl&lat=46.309&lon=-119.254&asl=124&format=json' \
