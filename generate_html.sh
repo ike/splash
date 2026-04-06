@@ -302,6 +302,7 @@ HOURLY_ROWS=$(jq -r --arg today "$TODAY" --arg tomorrow "$TOMORROW" '
   (.wind.speed_ms // null) as $speed_ms |
   (if $speed_ms == null then "null" else ($speed_ms * 1.94384 | . * 10 | round | . / 10 | tostring) end) as $speed_kts |
   (.wind.direction_degrees // null) as $dir |
+  (.uvindex // "null" | tostring) as $uvindex |
   (.precipitation_mm // "null" | tostring) as $precip |
   (.relative_humidity // "null" | tostring) as $humidity |
 
@@ -350,6 +351,16 @@ HOURLY_ROWS=$(jq -r --arg today "$TODAY" --arg tomorrow "$TOMORROW" '
      ["&#x2193;","&#x2199;","&#x2190;","&#x2196;","&#x2191;","&#x2197;","&#x2192;","&#x2198;"][$idx]
    end) as $dir_arrow |
 
+  # uv index class
+  (if $uvindex == "null" then ""
+   elif ($uvindex | tonumber) < 1   then ""
+   elif ($uvindex | tonumber) < 3   then "uv-low"
+   elif ($uvindex | tonumber) < 5   then "uv-moderate"
+   elif ($uvindex | tonumber) < 8   then "uv-high"
+   elif ($uvindex | tonumber) < 11  then "uv-veryhigh"
+   else "uv-extreme"
+   end) as $uv_class |
+
   # precip class
   (if $precip == "null" or $precip == "0" or $precip == "0.0" then "" else "precip" end) as $precip_class |
 
@@ -367,10 +378,11 @@ HOURLY_ROWS=$(jq -r --arg today "$TODAY" --arg tomorrow "$TOMORROW" '
   (if $feels_c   == "null" then "&#x2014;" else $feels_c   end) as $d_feels_c   |
   (if $feels_f   == "null" then "&#x2014;" else $feels_f   end) as $d_feels_f   |
   (if $speed_kts == "null" then "&#x2014;" else $speed_kts end) as $d_speed_kts |
+  (if $uvindex   == "null" then "&#x2014;" else $uvindex   end) as $d_uvindex   |
   (if $precip    == "null" then "&#x2014;" else $precip    end) as $d_precip    |
   (if $humidity  == "null" then "&#x2014;" else $humidity  end) as $d_humidity  |
 
-  "  <tr>\n    <td>\($time_label)</td>\n    <td class=\"\($temp_class)\">\($d_actual_c) / \($d_actual_f)</td>\n    <td class=\"\($feels_class) feels-like\">\($d_feels_c) / \($d_feels_f)</td>\n    <td class=\"\($wind_speed_class)\">\($d_speed_kts)</td>\n    <td class=\"\($wind_dir_class)\">\($dir_arrow)</td>\n    <td class=\"\($precip_class)\">\($d_precip)</td>\n    <td class=\"\($humidity_class)\">\($d_humidity)</td>\n  </tr>"
+  "  <tr>\n    <td>\($time_label)</td>\n    <td class=\"\($temp_class)\">\($d_actual_c) / \($d_actual_f)</td>\n    <td class=\"\($feels_class) feels-like\">\($d_feels_c) / \($d_feels_f)</td>\n    <td class=\"\($wind_speed_class)\">\($d_speed_kts)</td>\n    <td class=\"\($wind_dir_class)\">\($dir_arrow)</td>\n    <td class=\"\($uv_class)\">\($d_uvindex)</td>\n    <td class=\"\($precip_class)\">\($d_precip)</td>\n    <td class=\"\($humidity_class)\">\($d_humidity)</td>\n  </tr>"
 ' "$WEATHER_JSON")
 
 # ── write output ───────────────────────────────────────────────────────────────
@@ -415,6 +427,11 @@ cat << 'HTML'
       td.wind-dir-good { background: #a8e6a3; }
       td.wind-dir-mid  { background: #f4e04a; }
       td.wind-dir-bad  { background: #f4a460; }
+      td.uv-low        { background: #299501c4; }
+      td.uv-moderate { background: #f7e401c4; }
+      td.uv-high { background: #f95901c4; }
+      td.uv-veryhigh   { background: #d90011c4; }
+      td.uv-extreme    { background: #6c49c9c4; }
       td.precip        { background: #d0eeff; }
       .top-layout { display: flex; gap: 1em; align-items: flex-start; margin-bottom: 1em; }
       .webcam-img { max-width: 100%; flex: 1 1 auto; }
@@ -738,6 +755,7 @@ cat << HTML
             <th>Feels Like (&deg;C / &deg;F)</th>
             <th>Wind (kts)</th>
             <th>Wind Dir</th>
+            <th>UVI</th>
             <th>P (mm)</th>
             <th>H (%)</th>
           </tr>
