@@ -469,14 +469,6 @@ cat << 'HTML'
           padding: 0;
         }
 
-        /* ── Hide non-data elements ── */
-        #kagi-search,
-        .webcam-img,
-        script,
-        .callout-col {
-          display: none !important;
-        }
-
         /* ── Top layout: collapse to header bar ── */
         .top-layout {
           display: block;
@@ -696,20 +688,11 @@ cat << 'HTML'
       }
     </style>
     <link rel="manifest" href="manifest.json">
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js');
-      }
-    </script>
   </head>
 HTML
 
 cat << HTML
   <body>
-    <!-- <form id="kagi-search" action="https://kagi.com/search" method="get" target="_self">
-       <input type="text" name="q" placeholder="Search Kagi…" autofocus />
-    </form> -->
-
     <div class="top-layout">
      <img src="webcam.jpg" class="webcam-img"/>
       <div class="callout-col">
@@ -766,11 +749,6 @@ ${HOURLY_ROWS}
       </table>
     </div>
     <script>
-      // Focus search input on load
-      // with a small timeout
-      // setTimeout(() => {
-      //   document.getElementById('kagi-search').querySelector('input[type="text"]').focus();
-      // }, 150);
       timeElem = document.querySelector('#time');
       if (timeElem) {
         // Get nice date in Pacific time zone
