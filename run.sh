@@ -11,8 +11,9 @@ $SCRIPT_DIR/get_webcam.sh "$SPLASH_HTML_FILE_PATH" --no-update-sw
 # curl -X 'GET' \
 #   'https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=aL4b8GwhENBgiSTl&lat=46.309&lon=-119.254&asl=124&format=json' | \
 data=$(curl -s 'https://my.meteoblue.com/packages/basic-1h?apikey=aL4b8GwhENBgiSTl&lat=46.309&lon=-119.254&asl=124&format=json')
+TODAY=$(date +%Y-%m-%d)
 echo $data | jq '.' > $SCRIPT_DIR/raw_weather.json
-echo "$data" | jq '{
+echo "$data" | jq --arg today "$TODAY" '{
   today: {
     wind: {
       average_ms: ([.data_1h.windspeed[0:23][] | select(. != null)] | add / length),
@@ -46,7 +47,7 @@ echo "$data" | jq '{
         precipitation_mm: .data_1h.precipitation[$i],
         relative_humidity: .data_1h.relativehumidity[$i],
         uvindex: .data_1h.uvindex[$i]
-      }]
+      } | select(.time >= $today)]
     else
       "hourly data not available in this API response (add basic-1h package)"
     end
