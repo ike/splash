@@ -749,67 +749,45 @@ ${HOURLY_ROWS}
       </table>
     </div>
     <script>
-      timeElem = document.querySelector('#time');
+      const now = new Date();
+      const timeElem = document.querySelector('#time');
       if (timeElem) {
-        // Get nice date in Pacific time zone
-        const now = new Date();
         const options = { hour: '2-digit', minute: '2-digit', timeZone: 'America/Los_Angeles' };
         timeElem.textContent = now.toLocaleString('en-US', options);
       }
-      document.addEventListener("DOMContentLoaded", async () => {
-        // Add current hour class to the correct tr
-        const now = new Date();
-        const currentHour = now.getHours();
-        const rows = document.querySelectorAll('tbody tr');
-        rows.forEach(row => {
-          const timeCell = row.querySelector('td:first-child');
-          if (timeCell) {
-            const timeText = timeCell.textContent;
-            if (timeText.startsWith('Today, ')) {
-              const hourMatch = timeText.match(/Today, (\d{1,2}):/);
-              if (hourMatch) {
-                const rowHour = parseInt(hourMatch[1], 10);
-                if (rowHour === currentHour) {
-                  row.classList.add('current-hour');
-                }
-              }
-            }
-          }
-        });
 
-        if (!("serviceWorker" in navigator)) return;
+      const currentHour = now.getHours();
+      for (const row of document.querySelectorAll('tbody tr')) {
+        const timeCell = row.querySelector('td:first-child');
+        if (!timeCell) continue;
+        const hourMatch = timeCell.textContent.match(/^Today, (\d{1,2}):/);
+        if (hourMatch && parseInt(hourMatch[1], 10) === currentHour) {
+          row.classList.add('current-hour');
+          break;
+        }
+      }
 
-        try {
-          const registration = await navigator.serviceWorker.register("/sw.js", {
-            scope: "/",
-          });
-
-          console.log("SW state:", registration.active?.state);
-          console.log("SW waiting:", registration.waiting);
-          console.log("SW installing:", registration.installing);
-
-          console.log("Calling update...");
-          registration.update().then(() => {
-            console.log("update() resolved");
-            console.log("SW waiting after update:", registration.waiting);
-            console.log("SW installing after update:", registration.installing);
-          });
-
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("/sw.js", { scope: "/" }).then(registration => {
           registration.addEventListener("updatefound", () => {
-            console.log("updatefound fired!", registration.installing?.state);
             const worker = registration.installing;
             worker.addEventListener("statechange", () => {
-              console.log("worker statechange:", worker.state);
-              if (worker.state === "installed") {
+              if (worker.state === "installed" && navigator.serviceWorker.controller) {
                 worker.postMessage({ type: "SKIP_WAITING" });
               }
             });
           });
+          registration.update();
+        }).catch(err => console.log("SW registration failed", err));
 
-        } catch (err) {
-          console.log("SW registration failed", err);
-        }
-      });
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener("controllerchange", () => {
+          if (!refreshing) {
+            refreshing = true;
+            window.location.reload();
+          }
+        });
+      }
     </script>
   </body>
 </html>
