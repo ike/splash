@@ -12,7 +12,13 @@ $SCRIPT_DIR/get_webcam.sh "$SPLASH_HTML_FILE_PATH" --no-update-sw
 #   'https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=aL4b8GwhENBgiSTl&lat=46.309&lon=-119.254&asl=124&format=json' | \
 data=$(curl -s 'https://my.meteoblue.com/packages/basic-1h?apikey=aL4b8GwhENBgiSTl&lat=46.309&lon=-119.254&asl=124&format=json')
 TODAY=$(date +%Y-%m-%d)
+TIMESTAMP=$(date +%Y-%m-%dT%H-%M-%S)
+DATA_DIR="$SCRIPT_DIR/data"
+mkdir -p "$DATA_DIR"
+
 echo $data | jq '.' > $SCRIPT_DIR/raw_weather.json
+cp $SCRIPT_DIR/raw_weather.json "$DATA_DIR/raw_weather_${TIMESTAMP}.json"
+
 echo "$data" | jq --arg today "$TODAY" '{
   today: {
     wind: {
@@ -53,6 +59,7 @@ echo "$data" | jq --arg today "$TODAY" '{
     end
   )
 }' > $SCRIPT_DIR/weather.json
+cp $SCRIPT_DIR/weather.json "$DATA_DIR/weather_${TIMESTAMP}.json"
 
 # Get water quality data for yesterday
 YESTERDAY=$(date -v-1d +%m/%d 2>/dev/null || date -d "yesterday" +%m/%d)
@@ -67,6 +74,7 @@ fetch_water_temp() {
   csv=$(curl -s "$url" | tail -n +2) # Skip header
   # Find the row matching yesterday's date, get temperature (col 3) and oxygen (col 4)
   echo "$csv" > $SCRIPT_DIR/${proj}_raw.csv
+  cp $SCRIPT_DIR/${proj}_raw.csv "$DATA_DIR/${proj}_raw_${TIMESTAMP}.csv"
   echo "$csv" | head -1
 }
 pasco_row=$(fetch_water_temp "PAQW")
@@ -93,6 +101,7 @@ jq -n \
   '{
     pasco: { temperature: $pt, oxygen: $po },
   }' > $SCRIPT_DIR/water.json
+cp $SCRIPT_DIR/water.json "$DATA_DIR/water_${TIMESTAMP}.json"
  # --argjson prt "${priest_temp:-null}" \
  # --argjson pro "${priest_oxygen:-null}" \
  # --argjson mt "${mcnary_temp:-null}" \
