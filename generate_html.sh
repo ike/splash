@@ -285,6 +285,7 @@ fi
 
 HOURLY_ROWS=$(jq -r --arg today "$TODAY" --arg tomorrow "$TOMORROW" '
   .hourly[] |
+  select((.time | gsub(" "; "T") | split("T")[0]) >= $today) |
   .time as $time |
   (.time | gsub(" "; "T")) as $iso |
   ($iso | split("T")[0]) as $date_part |
