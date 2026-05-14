@@ -10,7 +10,14 @@ $SCRIPT_DIR/get_webcam.sh "$SPLASH_HTML_FILE_PATH" --no-update-sw
 
 # curl -X 'GET' \
 #   'https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=aL4b8GwhENBgiSTl&lat=46.309&lon=-119.254&asl=124&format=json' | \
-data=$(curl -s 'https://my.meteoblue.com/packages/basic-1h?apikey=aL4b8GwhENBgiSTl&lat=46.309&lon=-119.254&asl=124&format=json')
+data_source="${1:-}"
+SPLASH_HTML_FILE_PATH="${2:-./index.html}"
+
+if [ -n "$data_source" ] && [ -f "$data_source" ]; then
+  data=$(cat "$data_source")
+else
+  data=$(curl -s 'https://my.meteoblue.com/packages/basic-1h?apikey=aL4b8GwhENBgiSTl&lat=46.309&lon=-119.254&asl=124&format=json')
+fi
 TODAY=$(date +%Y-%m-%d)
 TIMESTAMP=$(date +%Y-%m-%dT%H-%M-%S)
 DATA_DIR="$SCRIPT_DIR/data"

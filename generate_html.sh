@@ -356,8 +356,8 @@ HOURLY_ROWS=$(jq -r --arg today "$TODAY" --arg tomorrow "$TOMORROW" '
   (if $uvindex == "null" then ""
    elif ($uvindex | tonumber) < 1   then ""
    elif ($uvindex | tonumber) < 3   then "uv-low"
-   elif ($uvindex | tonumber) < 5   then "uv-moderate"
-   elif ($uvindex | tonumber) < 8   then "uv-high"
+   elif ($uvindex | tonumber) <= 5   then "uv-moderate"
+   elif ($uvindex | tonumber) <= 7   then "uv-high"
    elif ($uvindex | tonumber) < 11  then "uv-veryhigh"
    else "uv-extreme"
    end) as $uv_class |
