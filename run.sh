@@ -107,10 +107,10 @@ pasco_oxygen=$(parse_field "$pasco_row" 11)
 
 # Default to "null" if empty or non-numeric
 if ! echo "$pasco_temp" | grep -qE '^-?[0-9]+(\.[0-9]+)?$'; then
-  pasco_temp="-"
+  pasco_temp="null"
 fi
 if ! echo "$pasco_oxygen" | grep -qE '^-?[0-9]+(\.[0-9]+)?$'; then
-  pasco_oxygen="-"
+  pasco_oxygen="null"
 fi
 #priest_temp=$(parse_field "$priest_row" 3)
 #priest_oxygen=$(parse_field "$priest_row" 4)
