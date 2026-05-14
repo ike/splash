@@ -10,8 +10,8 @@ $SCRIPT_DIR/get_webcam.sh "$SPLASH_HTML_FILE_PATH" --no-update-sw
 
 # curl -X 'GET' \
 #   'https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=aL4b8GwhENBgiSTl&lat=46.309&lon=-119.254&asl=124&format=json' | \
-data_source="${1:-}"
-SPLASH_HTML_FILE_PATH="${2:-./index.html}"
+SPLASH_HTML_FILE_PATH="${1:-./index.html}"
+data_source="${2:-}"
 
 if [ -n "$data_source" ] && [ -f "$data_source" ]; then
   data=$(cat "$data_source")
@@ -83,7 +83,11 @@ fetch_water_temp() {
   local proj=$1
   local csv
   url="https://www.cbr.washington.edu/dart/cs/php/rpt/wqm_hourly.php?sc=1&outputFormat=csv&year=${YESTERDAY_YEAR}&proj=${proj}&startdate=${YESTERDAY_URL_ENCODED}&days=1&keys="
-  csv=$(curl -s "$url" | tail -n +2) # Skip header
+  csv=$(curl -s --max-time 10 "$url" | tail -n +2) # Skip header
+  if [ -z "$csv" ]; then
+    echo ""
+    return
+  fi
   # Find the row matching yesterday's date, get temperature (col 3) and oxygen (col 4)
   echo "$csv" > $SCRIPT_DIR/${proj}_raw.csv
   cp $SCRIPT_DIR/${proj}_raw.csv "$DATA_DIR/${proj}_raw_${TIMESTAMP}.csv"
@@ -100,6 +104,14 @@ parse_field() {
 
 pasco_temp=$(parse_field "$pasco_row" 8)
 pasco_oxygen=$(parse_field "$pasco_row" 11)
+
+# Default to "null" if empty or non-numeric
+if ! echo "$pasco_temp" | grep -qE '^-?[0-9]+(\.[0-9]+)?$'; then
+  pasco_temp="-"
+fi
+if ! echo "$pasco_oxygen" | grep -qE '^-?[0-9]+(\.[0-9]+)?$'; then
+  pasco_oxygen="-"
+fi
 #priest_temp=$(parse_field "$priest_row" 3)
 #priest_oxygen=$(parse_field "$priest_row" 4)
 #mcnary_temp=$(parse_field "$mcnary_row" 3)
