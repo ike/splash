@@ -19,12 +19,17 @@ mkdir -p "$DATA_DIR"
 echo $data | jq '.' > $SCRIPT_DIR/raw_weather.json
 cp $SCRIPT_DIR/raw_weather.json "$DATA_DIR/raw_weather_${TIMESTAMP}.json"
 
-echo "$data" | jq --arg today "$TODAY" '{
-  today: {
-    wind: {
-      average_ms: ([.data_1h.windspeed[0:23][] | select(. != null)] | add / length),
-      peak_ms: ([.data_1h.windspeed[0:23][] | select(. != null)] | max)
-    },
+echo "$data" | jq --arg today "$TODAY" '
+  # build hourly first, then derive today summary from it
+  (.data_1h) as $h |
+  [range($h.time | length) | . as $i |
+    select($h.time[$i] | startswith($today)) | $i] as $today_idx |
+  {
+    today: {
+      wind: {
+        average_ms: ([$today_idx[] | $h.windspeed[.]] | map(select(. != null)) | add / length),
+        peak_ms:    ([$today_idx[] | $h.windspeed[.]] | map(select(. != null)) | max)
+      },
     temperature: {
       feels_like_avg_c: ([.data_1h.felttemperature[0:23][] | select(. != null)] | add / length),
       feels_like_avg_f: (([.data_1h.felttemperature[0:23][] | select(. != null)] | add / length) * 9/5 + 32 | round),
